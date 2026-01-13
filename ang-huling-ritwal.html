@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ang Huling Ritwal</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Permanent+Marker&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* Shared Sunday Strip Styles */
+        :root {
+            --bg-paper: #f0eadd;
+            --ink-black: #1a1a1a;
+            --steamy-red: #c81d11;
+            --accent-blue: #2d5d7b;
+            --highlight-yellow: #f4d03f;
+            --rust: #8b4513; 
+        }
+
+        body {
+            background-color: var(--bg-paper);
+            background-image: radial-gradient(#d1cbbd 1px, transparent 1px);
+            background-size: 20px 20px;
+            color: var(--ink-black);
+            font-family: 'Courier Prime', monospace;
+        }
+
+        h1, h2, h3, .comic-font {
+            font-family: 'Bangers', cursive;
+            letter-spacing: 1px;
+        }
+
+        .marker-font {
+            font-family: 'Permanent Marker', cursive;
+        }
+
+        /* Hard Shadow / Comic Panel Effect */
+        .comic-panel-border {
+            border: 3px solid var(--ink-black);
+            box-shadow: 6px 6px 0px 0px var(--ink-black);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .comic-panel-border:hover {
+            transform: translate(-1px, -1px);
+            box-shadow: 8px 8px 0px 0px var(--ink-black);
+        }
+
+        .masthead {
+            border-bottom: 4px solid var(--ink-black);
+            border-top: 4px solid var(--ink-black);
+        }
+
+        .narrative-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        .dialogue {
+            font-weight: 700;
+            color: var(--steamy-red);
+            background-color: rgba(200, 29, 17, 0.05);
+            padding: 0 4px;
+            border-radius: 4px;
+        }
+
+        .psych-text {
+            font-family: 'Courier New', Courier, monospace;
+            color: #2d5d7b;
+            font-style: italic;
+        }
+
+        .section-break {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 3rem 0;
+            opacity: 0.5;
+        }
+        .section-break::before, .section-break::after {
+            content: "";
+            flex: 1;
+            border-bottom: 2px dashed var(--ink-black);
+            margin: 0 1rem;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <!-- HEADER / NAV -->
+    <header class="w-full max-w-4xl mx-auto p-4 md:p-8">
+        <div class="flex justify-between items-center mb-4">
+            <a href="index.html" class="flex items-center gap-2 text-sm font-bold uppercase hover:text-[#c81d11] transition-colors">
+                <i data-lucide="arrow-left" size="16"></i> Back to Collection
+            </a>
+        </div>
+
+        <div class="masthead bg-white border-x-0 md:border-x-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] p-6 relative overflow-hidden text-center">
+            <div class="absolute top-2 left-2 text-4xl opacity-10 rotate-45">✦</div>
+            <div class="absolute bottom-2 right-2 text-4xl opacity-10 rotate-12">✦</div>
+            
+            <h1 class="text-5xl md:text-7xl leading-none uppercase relative z-10">
+                Ang Huling <br><span class="text-[#c81d11]">Ritwal</span>
+            </h1>
+            <p class="mt-2 marker-font text-xl transform -rotate-2 text-gray-600">
+                ( The Last Ritual )
+            </p>
+        </div>
+    </header>
+
+    <!-- MAIN READER CONTENT -->
+    <main class="flex-grow w-full max-w-3xl mx-auto px-4 pb-16">
+        
+        <!-- WARNING -->
+        <div class="bg-black text-white p-4 mb-8 border-2 border-[#c81d11] flex items-start gap-4">
+            <i data-lucide="alert-triangle" class="text-[#c81d11] shrink-0"></i>
+            <div>
+                <h4 class="font-bold uppercase text-sm mb-1">Content Warning</h4>
+                <p class="text-xs font-mono opacity-80">This story contains themes of obsession, isolation, and mental health struggles that some readers may find disturbing.</p>
+            </div>
+        </div>
+
+        <!-- INTRO -->
+        <div class="bg-white p-6 md:p-8 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,0.5)] mb-12">
+            <h3 class="comic-font text-2xl mb-4 border-b-2 border-dashed border-gray-300 pb-2">Psychological Profile</h3>
+            <p class="narrative-text">
+                Genre: <strong class="uppercase text-[#8b4513]">Psychological Thriller / BL</strong>
+            </p>
+            <p class="narrative-text mb-0">
+                Themes: <strong class="uppercase text-[#c81d11]">Obsession, Isolation, Schizophrenia</strong>
+            </p>
+        </div>
+
+        <!-- SCENE 1 -->
+        <section class="mb-16">
+            <div class="flex items-center gap-4 mb-4">
+                <span class="bg-black text-white text-xl font-bold px-3 py-1 comic-font transform -rotate-3">Scene 01</span>
+                <h2 class="text-3xl uppercase text-[#8b4513]">Ang Init ng Ulan</h2>
+            </div>
+            
+            <div class="prose font-serif text-lg leading-relaxed">
+                <p class="italic text-sm text-gray-600 mb-6">
+                    Setting: Isang madilim na kwarto. Rinig ang malakas na buhos ng ulan sa labas. Only the dim light from a lamp illuminates the sweat on two bodies.
+                </p>
+                <p class="narrative-text">
+                    Hingal. Malalim, mabilis, at puno ng pagnanasa.
+                </p>
+                <p class="narrative-text">
+                    Nakasandal si Caleb sa headboard ng kama, ang mga mata niya ay nakapikit habang damang-dama ang bawat haplos ng mga kamay na gumuguhit sa kanyang dibdib pababa sa kanyang tiyan. Mahigpit ang hawak sa kanya ni Juno—isang hawak na tila ba takot na takot itong mawala siya.
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-black">
+                    <span class="dialogue">"Sabi ko naman sa’yo, ‘di ba? Akin ka lang,"</span> bulong ni Juno sa tenga ni Caleb, mababa at paos. <span class="dialogue">"Walang makakakita sa’yo kundi ako."</span>
+                </p>
+                <p class="narrative-text">
+                    Dumilat si Caleb. Ang mga mata ni Juno ay madilim, mapanganib, pero punong-puno ng pagmamahal na nakakalasing. Hinila ni Caleb ang batok ni Juno para halikan ito nang mariin. Mapusok. Walang pigil.
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-[#c81d11]">
+                    <span class="dialogue">"Wala naman akong ibang gusto, Juno… Ikaw lang. Pero ang higpit mo masyado… nasasaktan na ‘ko."</span>
+                </p>
+                <p class="narrative-text">
+                    Ngumisi lang si Juno. Hinawakan niya ang magkabilang pulsuhan ni Caleb at idiniin ito sa kama, over Caleb’s head. The dominance was suffocating but intoxicating for Caleb.
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-black">
+                    <span class="dialogue">"Kailangan kitang higpitan. Ang daming gustong umagaw sa’yo sa labas. Ang daming mata. Dito, ligtas tayo. Dito, tayo lang ang hari."</span>
+                </p>
+                <p class="narrative-text">
+                    Bumaba ang halik ni Juno sa leeg ni Caleb, leaving a trail of heat. Caleb arched his back, surrendering to the sensation, letting the darkness of the room swallow them both. For Caleb, pain and pleasure had become the same thing.
+                </p>
+            </div>
+        </section>
+
+        <div class="section-break text-2xl">✦</div>
+
+        <!-- SCENE 2 -->
+        <section class="mb-16">
+            <div class="flex items-center gap-4 mb-4 justify-end">
+                <h2 class="text-3xl uppercase text-[#c81d11]">Ang Gamot at Ang Duda</h2>
+                <span class="bg-[#c81d11] text-white text-xl font-bold px-3 py-1 comic-font transform rotate-2">Scene 02</span>
+            </div>
+
+            <div class="prose font-serif text-lg leading-relaxed">
+                <p class="italic text-sm text-gray-600 mb-6">
+                    Setting: Kinabukasan. Maliwanag na ang sikat ng araw pero nakasara pa rin ang makakapal na kurtina. Caleb is alone in the kitchen, staring at a small plastic cup with two pills.
+                </p>
+                <p class="narrative-text">
+                    Nanginginig ang kamay ni Caleb habang hawak ang baso ng tubig. Ilang araw na ba silang nagtatago dito? Hindi niya na mabilang. Ang alam niya lang, bawal siyang lumabas. Sabi ni Juno, may mga "naghahanap" sa kanila.
+                </p>
+                <p class="narrative-text">
+                    Biglang may yumakap sa kanya mula sa likuran. The familiar warmth. The familiar scent of musk and rain.
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-black">
+                    <span class="dialogue">"Inumin mo na ‘yan, Mahal. Para kumalma ka. Masyado kang praning kapag hindi ka nakakainom."</span>
+                </p>
+                <p class="narrative-text">
+                    Hinarap siya ni Caleb. There was a weird glint in Juno’s eyes today.
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-[#c81d11]">
+                    <span class="dialogue">"Juno, hanggang kailan tayo ganito? Laging nakatago? Laging madilim? Gusto ko lang naman makita yung labas kahit saglit. Parang… parang nakukulong na tayo."</span>
+                </p>
+                <p class="narrative-text">
+                    Biglang nagbago ang timpla ng mukha ni Juno. Nawala ang lambing. Humigpit ang hawak niya sa braso ni Caleb. Masakit.
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-black">
+                    <span class="dialogue">"Lalabas ka? Iiwan mo ako? Matapos ng lahat ng ginawa ko para sa’yo?"</span>
+                </p>
+                <p class="narrative-text">
+                    Itinulak ni Juno si Caleb pasandal sa counter. The sudden aggression made Caleb’s heart race—fear mixed with adrenaline. Juno leaned in, pinning Caleb with his body.
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-black">
+                    <span class="dialogue">"Akala ko ba mahal mo ako? Kung mahal mo ako, susundin mo ako. Inumin mo ‘yan."</span>
+                </p>
+                <p class="narrative-text">
+                    Napapikit si Caleb habang nararamdaman ang katawan ni Juno na nakadikit sa kanya. The tension was palpable. With shaking hands, Caleb swallowed the pills dry, staring straight into Juno’s eyes.
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-[#c81d11]">
+                    <span class="dialogue">"Mahal kita. Alam mo ‘yan."</span>
+                </p>
+                <p class="narrative-text">
+                    Ngumiti ulit si Juno. Isang ngiting parang bata, inosente bigla. He kissed Caleb’s forehead gentle, contrasting the violence from seconds ago.
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-black">
+                    <span class="dialogue">"Good boy. Matulog ka muna. Babantayan kita."</span>
+                </p>
+            </div>
+        </section>
+
+        <div class="section-break text-2xl">✦</div>
+
+        <!-- SCENE 3 -->
+        <section class="mb-16">
+            <div class="flex items-center gap-4 mb-4">
+                <span class="bg-black text-white text-xl font-bold px-3 py-1 comic-font transform -rotate-1">Scene 03</span>
+                <h2 class="text-3xl uppercase text-[#8b4513]">Ang Pagtakas</h2>
+            </div>
+
+            <div class="prose font-serif text-lg leading-relaxed">
+                <p class="narrative-text">
+                    Gabing-gabi. Bumangon si Caleb. Mabigat ang ulo niya dahil sa gamot, pero may mali. Sobrang tahimik. Lumabas siya ng kwarto. "Juno?" tawag niya. Walang sumagot.
+                </p>
+                <p class="narrative-text">
+                    Napadako ang tingin niya sa pinto ng bahay. Laging naka-padlock ‘to. Pero ngayon… naka-awang nang bahagya. Kumabog ang dibdib ni Caleb. Ito na ang pagkakataon. Baka nakalimutan ni Juno isara. Baka pwede siyang sumilip.
+                </p>
+                <p class="narrative-text">
+                    Dahan-dahan siyang lumapit sa pinto. His bare feet cold against the floor. Hinawakan niya ang doorknob. Binuksan niya nang dahan-dahan.
+                </p>
+                <p class="narrative-text">
+                    Pagbukas niya, hindi kalsada ang nakita niya.
+                </p>
+                <p class="narrative-text font-bold text-xl text-center my-4 uppercase tracking-widest">Salamin.</p>
+                <p class="narrative-text">
+                    Isang malaking full-length mirror na nakaharang sa pinto. Napakunot ang noo ni Caleb. Bakit may salamin dito? Tinitigan niya ang sarili niya. Payat. Putla. Puro pasa ang leeg at braso—marka ng "pagmamahal" ni Juno.
+                </p>
+                <p class="narrative-text">
+                    Biglang may bumulong sa likod niya.
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-black">
+                    <span class="dialogue">"Saan ka pupunta?"</span>
+                </p>
+                <p class="narrative-text">
+                    Napatalon si Caleb at humarap. Nakatayo si Juno, may hawak na kutsilyo. Pero hindi siya galit. Umiiyak siya.
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-black">
+                    <span class="dialogue">"Bakit gusto mong umalis? Hindi ba sapat yung pagmamahal ko? Binigay ko sa’yo lahat, Caleb! Lahat!"</span>
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-[#c81d11]">
+                    <span class="dialogue">"Juno, bitawan mo ‘yan. Gusto ko lang naman huminga. Nasasakal na ako sa’yo!"</span>
+                </p>
+                <p class="narrative-text">
+                    Sumugod si Juno. Niyakap niya nang mahigpit si Caleb. Sobrang higpit na hindi na makahinga si Caleb. They fell to the floor, tangled limbs. It felt like a wrestle for dominance, suggestive yet terrifying.
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-[#c81d11]">
+                    <span class="dialogue">"Juno… tama na… masakit…"</span>
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-black">
+                    <span class="dialogue">"Dito ka lang! Dito ka lang sa loob ko!"</span>
+                </p>
+            </div>
+        </section>
+
+        <div class="section-break text-2xl">✦</div>
+
+        <!-- SCENE 4 -->
+        <section class="mb-16">
+            <div class="flex items-center gap-4 mb-4 justify-end">
+                <h2 class="text-3xl uppercase text-[#2d5d7b]">Ang Katotohanan</h2>
+                <span class="bg-[#2d5d7b] text-white text-xl font-bold px-3 py-1 comic-font transform rotate-3">Scene 04</span>
+            </div>
+
+            <div class="prose font-serif text-lg leading-relaxed">
+                <p class="narrative-text">
+                    White lights. Sterile smell. Bleaching agents.
+                </p>
+                <p class="narrative-text">
+                    Biglang bumukas ang pinto. Hindi ang pinto ng bahay, kundi isang mabigat na bakal na pinto. Pumasok ang dalawang lalaking naka-puti at isang doktor.
+                </p>
+                <p class="narrative-text">
+                    Sa sahig, nakita nila si Caleb.
+                </p>
+                <p class="narrative-text text-center text-xl font-bold my-4 uppercase border-y-2 border-black py-2">Nag-iisa.</p>
+                <p class="narrative-text">
+                    Naka-curled up siya sa sahig, mahigpit na nakayakap sa sarili niya. Ang mga kamay niya ay nakapulupot sa sarili niyang leeg, sinasakal ang sarili habang ang mga binti ay nagpupumiglas na parang may nakapatong sa kanya.
+                </p>
+                <p class="narrative-text">
+                    Gumagawa siya ng mga ungol at sigaw, nakikipag-usap sa hangin.
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-[#c81d11]">
+                    <span class="dialogue">"Juno! Mahal kita pero tama na! Nasasaktan ako!"</span> sigaw niya sa kawalan.
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-blue-800">
+                    <span class="psych-text">"Nurse, hold him down! He’s having an episode again. He’s hurting himself."</span>
+                </p>
+                <p class="narrative-text">
+                    Tumakbo ang mga nurse para hawakan si Caleb. Nagpupumiglas si Caleb, akala niya ay niyayakap at pinipigilan siya ni Juno. Ang mga "pasa" sa katawan niya ay gawa ng sarili niyang mga kuko at paghampas sa pader.
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-[#c81d11]">
+                    <span class="dialogue">"Bitawan niyo siya! Juno! Wag mo silang hayaan!"</span>
+                </p>
+                <p class="narrative-text">
+                    Itinurok ng doktor ang pampakalma sa braso ni Caleb. Unti-unting bumagal ang galaw niya. Nanlabo ang paningin niya.
+                </p>
+                <p class="narrative-text">
+                    Sa huling sandali bago siya mawalan ng malay, tumingin si Caleb sa repleksyon niya sa salamin ng observation room. Doon, sa salamin, nakita niya si Juno. Nakangiti. Kumaway.
+                </p>
+                <p class="narrative-text">
+                    Pero si Juno ay walang sariling katawan.
+                </p>
+                <div class="bg-black text-white p-6 border-4 border-double border-[#c81d11] shadow-[8px_8px_0px_0px_rgba(100,0,0,1)]">
+                    <p class="text-center text-2xl comic-font uppercase mb-4">Si Juno ay siya.</p>
+                    <p class="narrative-text">
+                        Ang repleksyon ni Caleb ay ngumisi, habang ang tunay na Caleb ay tuluyan nang bumagsak sa sahig.
+                    </p>
+                    <p class="text-center font-bold italic mt-4 text-[#c81d11]">
+                        "Sabi ko naman sa’yo, ‘di ba? Walang makakakita sa’yo kundi ako. Dahil ako… ay ikaw."
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-black text-[#f0eadd] py-8 border-t-4 border-[#c81d11] mt-auto">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h2 class="text-3xl comic-font mb-4 text-[#c81d11]">WAKAS</h2>
+            <div class="flex justify-center gap-4 mb-6">
+                 <button onclick="window.location.href='index.html'" class="border border-[#f0eadd] px-4 py-2 hover:bg-[#c81d11] hover:border-[#c81d11] hover:text-white transition-all uppercase font-bold text-xs">
+                    Return to Collection
+                 </button>
+            </div>
+            <p class="mt-8 text-xs font-mono opacity-50">© 2025 The Sunday Strip. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

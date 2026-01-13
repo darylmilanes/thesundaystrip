@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assets and Liabilities</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Permanent+Marker&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* Shared Sunday Strip Styles */
+        :root {
+            --bg-paper: #f0eadd;
+            --ink-black: #1a1a1a;
+            --steamy-red: #c81d11;
+            --accent-blue: #2d5d7b;
+            --highlight-yellow: #f4d03f;
+            --rust: #8b4513; 
+        }
+
+        body {
+            background-color: var(--bg-paper);
+            background-image: radial-gradient(#d1cbbd 1px, transparent 1px);
+            background-size: 20px 20px;
+            color: var(--ink-black);
+            font-family: 'Courier Prime', monospace;
+        }
+
+        h1, h2, h3, .comic-font {
+            font-family: 'Bangers', cursive;
+            letter-spacing: 1px;
+        }
+
+        .marker-font {
+            font-family: 'Permanent Marker', cursive;
+        }
+
+        /* Hard Shadow / Comic Panel Effect */
+        .comic-panel-border {
+            border: 3px solid var(--ink-black);
+            box-shadow: 6px 6px 0px 0px var(--ink-black);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .comic-panel-border:hover {
+            transform: translate(-1px, -1px);
+            box-shadow: 8px 8px 0px 0px var(--ink-black);
+        }
+
+        .masthead {
+            border-bottom: 4px solid var(--ink-black);
+            border-top: 4px solid var(--ink-black);
+        }
+
+        .narrative-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        .dialogue {
+            font-weight: 700;
+            color: var(--steamy-red);
+            background-color: rgba(200, 29, 17, 0.05);
+            padding: 0 4px;
+            border-radius: 4px;
+        }
+
+        .document-text {
+            font-family: 'Times New Roman', serif;
+            color: #333;
+            background-color: #fff;
+            padding: 1rem;
+            border: 1px solid #ccc;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+            margin: 1rem 0;
+            font-size: 1rem;
+        }
+
+        .section-break {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 3rem 0;
+            opacity: 0.5;
+        }
+        .section-break::before, .section-break::after {
+            content: "";
+            flex: 1;
+            border-bottom: 2px dashed var(--ink-black);
+            margin: 0 1rem;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <!-- HEADER / NAV -->
+    <header class="w-full max-w-4xl mx-auto p-4 md:p-8">
+        <div class="flex justify-between items-center mb-4">
+            <a href="index.html" class="flex items-center gap-2 text-sm font-bold uppercase hover:text-[#c81d11] transition-colors">
+                <i data-lucide="arrow-left" size="16"></i> Back to Collection
+            </a>
+        </div>
+
+        <div class="masthead bg-white border-x-0 md:border-x-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] p-6 relative overflow-hidden text-center">
+            <div class="absolute top-2 left-2 text-4xl opacity-10 rotate-45">✦</div>
+            <div class="absolute bottom-2 right-2 text-4xl opacity-10 rotate-12">✦</div>
+            
+            <h1 class="text-5xl md:text-7xl leading-none uppercase relative z-10">
+                Assets & <br><span class="text-[#c81d11]">Liabilities</span>
+            </h1>
+            <p class="mt-2 marker-font text-xl transform -rotate-2 text-gray-600">
+                ( An Hostile Takeover )
+            </p>
+        </div>
+    </header>
+
+    <!-- MAIN READER CONTENT -->
+    <main class="flex-grow w-full max-w-3xl mx-auto px-4 pb-16">
+        
+        <!-- CHARACTERS -->
+        <div class="bg-white p-6 md:p-8 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,0.5)] mb-12 mt-12">
+            <h3 class="comic-font text-2xl mb-4 border-b-2 border-dashed border-gray-300 pb-2">Deal Profiles</h3>
+            <p class="narrative-text">
+                <strong class="uppercase text-[#8b4513]">Jace:</strong> The "Rich." An heir to a failing shipping empire. Arrogant, desperate, and believes his charm can solve his financial crisis.
+            </p>
+            <p class="narrative-text mb-0">
+                <strong class="uppercase text-[#c81d11]">Vance:</strong> The "Richer." A mysterious venture capitalist with old money roots and a reputation for eating companies alive. Cold, calculating, and dangerously attractive.
+            </p>
+        </div>
+
+        <!-- SCENE 1 -->
+        <section class="mb-16">
+            <div class="flex items-center gap-4 mb-4">
+                <span class="bg-black text-white text-xl font-bold px-3 py-1 comic-font transform -rotate-3">Scene 01</span>
+                <h2 class="text-3xl uppercase text-[#8b4513]">The Valuation</h2>
+            </div>
+            
+            <div class="prose font-serif text-lg leading-relaxed">
+                <p class="narrative-text">
+                    The air in the private VIP lounge of the high-rise BGC hotel was thick with the scent of expensive scotch and unspoken agendas. Jace adjusted his silk tie, his heart pounding against his ribs, though his face remained a mask of practiced boredom.
+                </p>
+                <p class="narrative-text">
+                    Nakatayo si Vance by the floor-to-ceiling window, hawak ang isang crystal glass. Even from the back, the man exuded power—yung klase ng yaman na hindi na kailangang sumigaw.
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-[#c81d11]">
+                    <span class="dialogue">"You’re late,"</span> Vance said, his voice deep and rough like gravel.
+                </p>
+                <p class="narrative-text">
+                    Humarap siya, and his gaze raked over Jace lazily. <span class="dialogue">"I don't like waiting, Jace."</span>
+                </p>
+                <p class="narrative-text">
+                    <span class="dialogue">"I’m worth the wait, Vance,"</span> Jace replied, forcing a smirk as he walked closer. <span class="dialogue">"Besides, I brought the merger proposal."</span>
+                </p>
+                <p class="narrative-text">
+                    Vance chuckled darkly, placing his drink on the table. He didn't look at the documents. Instead, he stepped into Jace’s personal space. Masyadong malapit. Amoy ni Jace ang mamahaling pabango nito—a mix of sandalwood and something darker, musky.
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-[#c81d11]">
+                    <span class="dialogue">"I didn't come here for papers, Jace. Alam ng lahat sa business circle na your family’s company is bleeding cash. You’re desperate."</span>
+                </p>
+                <p class="narrative-text">
+                    Hinawakan ni Vance ang baba ni Jace, forcing him to look up. The touch was electric, sending a shiver down Jace’s spine.
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-[#c81d11]">
+                    <span class="dialogue">"I can save you,"</span> Vance murmured, his thumb brushing against Jace’s lower lip. <span class="dialogue">"Pero alam mo na hindi pera ang kabayaran ko."</span>
+                </p>
+                <p class="narrative-text">
+                    Jace’s breath hitched. Alam niya ang laro. He stepped closer, eliminating the gap between their bodies.
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-black">
+                    <span class="dialogue">"Then tell me... what’s the price?"</span>
+                </p>
+            </div>
+        </section>
+
+        <div class="section-break text-2xl">✦</div>
+
+        <!-- SCENE 2 -->
+        <section class="mb-16">
+            <div class="flex items-center gap-4 mb-4 justify-end">
+                <h2 class="text-3xl uppercase text-[#c81d11]">Due Diligence</h2>
+                <span class="bg-[#c81d11] text-white text-xl font-bold px-3 py-1 comic-font transform rotate-2">Scene 02</span>
+            </div>
+
+            <div class="prose font-serif text-lg leading-relaxed">
+                <p class="italic text-sm text-gray-600 mb-6">
+                    Setting: Vance’s penthouse suite. The lights were dim, city lights serving as the only illumination. The merger papers lay forgotten on the floor.
+                </p>
+                <p class="narrative-text">
+                    Vance had Jace pinned against the mahogany desk. Their breaths came in ragged gasps. Hands were roaming, desperate and possessive. Vance’s grip on Jace’s waist was firm, demanding total submission.
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-[#c81d11]">
+                    <span class="dialogue">"You think you can manipulate me with this?"</span> Vance whispered against Jace’s neck, his lips grazing the sensitive skin below the ear. <span class="dialogue">"Akala mo ba hindi ko alam ang ginagawa mo?"</span>
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-black">
+                    <span class="dialogue">"Shut up and just sign the deal,"</span> Jace panted.
+                </p>
+                <p class="narrative-text">
+                    Jace tilted his head back as Vance’s hand slid under his shirt, exploring the warmth of his skin. Mainit ang palad ni Vance, madiin ang bawat haplos. It felt like branding.
+                </p>
+                <p class="narrative-text">
+                    Vance bit lightly on Jace’s collarbone, eliciting a low moan from the heir. <span class="dialogue">"You’re beautiful when you’re desperate, Jace. Sobrang ganda."</span>
+                </p>
+                <p class="narrative-text">
+                    Inangat ni Vance si Jace paupo sa mesa, sweeping the expensive ornaments aside with a crash. Neither cared. Jace wrapped his legs around Vance’s waist, pulling him closer, seeking friction. The heat between them was suffocating, intoxicating.
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-black">
+                    <span class="dialogue">"Make me yours, Vance,"</span> Jace challenged, his eyes heavy with lust. <span class="dialogue">"Show me what real power feels like."</span>
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-[#c81d11]">
+                    <span class="dialogue">"Be careful what you wish for."</span>
+                </p>
+                <p class="narrative-text">
+                    Vance captured Jace’s lips in a searing, dominant kiss that tasted of whiskey and danger.
+                </p>
+            </div>
+        </section>
+
+        <div class="section-break text-2xl">✦</div>
+
+        <!-- SCENE 3 -->
+        <section class="mb-16">
+            <div class="flex items-center gap-4 mb-4">
+                <span class="bg-black text-white text-xl font-bold px-3 py-1 comic-font transform -rotate-1">Scene 03</span>
+                <h2 class="text-3xl uppercase text-[#8b4513]">The Acquisition</h2>
+            </div>
+
+            <div class="prose font-serif text-lg leading-relaxed">
+                <p class="narrative-text">
+                    The bedroom was quiet, save for the sound of heavy breathing and the rustle of silk sheets. The atmosphere was heavy with the aftermath of their intensity. It was raw, suggestive, and deeply intimate.
+                </p>
+                <p class="narrative-text">
+                    Nakahiga si Jace, his chest heaving, glistening with sweat. Vance hovered over him, tracing the line of Jace’s jaw with a deceptive gentleness. The intimacy felt real—too real. For a moment, Jace forgot about the bankruptcy, the lies, and the scheme.
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-[#c81d11]">
+                    <span class="dialogue">"You’re shaking,"</span> puna ni Vance, his voice softer now.
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-black">
+                    <span class="dialogue">"Pagod lang,"</span> Jace lied, turning his face away.
+                </p>
+                <p class="narrative-text">
+                    He felt vulnerable. Exposed. He had given his body to secure his legacy. Vance leaned down, whispering directly into Jace’s ear, his voice sending shivers through Jace’s entire being.
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-[#c81d11]">
+                    <span class="dialogue">"Ang sarap mong angkinin, Jace. Not just for a night. But completely."</span>
+                </p>
+                <p class="narrative-text">
+                    Jace looked back at him, confusion warring with the haze of pleasure. <span class="dialogue">"Once you sign the papers tomorrow, we’re partners. Equal footing."</span>
+                </p>
+                <p class="narrative-text">
+                    Vance smiled—a slow, predatory smile that didn't reach his eyes. <span class="dialogue">"Of course. Tomorrow."</span>
+                </p>
+                <p class="narrative-text">
+                    He kissed Jace’s forehead, then his nose, before claiming his lips again, deeper this time, parang tinatatakan ang kaluluwa ni Jace. It was a kiss of finality, though Jace didn't know it yet.
+                </p>
+            </div>
+        </section>
+
+        <div class="section-break text-2xl">✦</div>
+
+        <!-- SCENE 4 -->
+        <section class="mb-16">
+            <div class="flex items-center gap-4 mb-4 justify-end">
+                <h2 class="text-3xl uppercase text-[#2d5d7b]">The Liquidation</h2>
+                <span class="bg-[#2d5d7b] text-white text-xl font-bold px-3 py-1 comic-font transform rotate-3">Scene 04</span>
+            </div>
+
+            <div class="prose font-serif text-lg leading-relaxed">
+                <p class="narrative-text">
+                    Morning came with a blinding glare. Jace woke up alone in the massive bed. His body ached pleasantly, a reminder of the night’s intensity. He sat up, expecting to see the signed merger agreement on the nightstand. Instead, he saw a single black folder with the emblem of Vance’s holding company.
+                </p>
+                <p class="narrative-text">
+                    Confident that he had won, Jace opened the folder while sipping the coffee left for him. Binasa niya ang unang pahina. His smile faded. Binasa niya ang ikalawa. His hands started to tremble. By the third page, the coffee cup fell from his hand, shattering on the floor.
+                </p>
+                
+                <div class="document-text">
+                    <h4 class="text-center font-bold uppercase mb-4 border-b border-black pb-2">Deed of Absolute Sale</h4>
+                    <p class="text-justify text-sm">
+                        This Instrument, made and entered into... confirms the complete transfer of all assets, properties, and holdings of <strong>Jace Shipping Corp</strong> to <strong>Vance Holdings</strong>...
+                    </p>
+                    <p class="text-right text-xs mt-4"><strong>Date:</strong> 3 Months Ago</p>
+                </div>
+
+                <p class="narrative-text">
+                    Before Jace could process it, Vance walked in, fully dressed in a sharp charcoal suit, looking immaculate. He leaned against the doorframe, watching Jace with cold amusement.
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-black">
+                    <span class="dialogue">"Binili mo ang kumpanya ko?"</span> Jace’s voice broke. <span class="dialogue">"But... we were negotiating last night. Why did you... why did you sleep with me if you already owned everything?"</span>
+                </p>
+                <p class="narrative-text">
+                    Vance walked over slowly, looming over the bed. <span class="dialogue">"Correction, Jace. I didn't just buy your company three months ago. I bought your family’s debt. I bought your properties."</span>
+                </p>
+                <p class="narrative-text">
+                    May kinuha si Vance sa bulsa niya—isang maliit na litrato. It was an old, crumpled photo of a young boy crying outside a gated mansion—Jace's mansion.
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-[#c81d11]">
+                    <span class="dialogue">"Do you remember the driver your father framed for theft fifteen years ago? The man who died in prison because your family needed a scapegoat? That was my father."</span>
+                </p>
+                <p class="narrative-text">
+                    Jace froze. The color drained from his face.
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-[#c81d11]">
+                    <span class="dialogue">"I didn't become rich to merge with you, Jace. I became rich to buy you."</span>
+                </p>
+                <p class="narrative-text">
+                    Jace scrambled back against the headboard. <span class="dialogue">"So... last night...?"</span>
+                </p>
+                <p class="narrative-text">
+                    <span class="dialogue">"Last night wasn't a negotiation,"</span> Vance said, leaning in close, trapping Jace again. <span class="dialogue">"It was an appraisal."</span>
+                </p>
+            </div>
+        </section>
+
+        <!-- EPILOGUE -->
+        <div class="section-break"></div>
+        
+        <section class="mb-16">
+            <div class="text-center mb-8">
+                <h2 class="text-4xl comic-font uppercase">The Contract</h2>
+                <div class="w-24 h-1 bg-black mx-auto mt-2"></div>
+            </div>
+
+            <div class="bg-gray-100 p-8 border-4 border-double border-black relative">
+                <p class="narrative-text">
+                    Vance tossed a new document onto Jace’s lap.
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-[#c81d11]">
+                    <span class="dialogue">"You have nothing left. No home, no money, no name. Except this."</span>
+                </p>
+                <div class="document-text">
+                    <p class="font-mono text-sm"><strong>ROLE:</strong> Personal Assistant to the CEO</p>
+                    <p class="font-mono text-sm"><strong>TERM:</strong> Indefinite</p>
+                    <p class="font-mono text-sm"><strong>BENEFITS:</strong> Room and Board Included.</p>
+                </div>
+                <p class="narrative-text">
+                    <span class="dialogue">"Wala kang pupuntahan, Jace. You are destitute,"</span> Vance whispered, brushing a stray hair from Jace’s trembling face. <span class="dialogue">"Unless you sign that. You wanted to be taken care of? I’ll take care of you. Forever."</span>
+                </p>
+                <p class="narrative-text">
+                    Jace looked at the door, then at Vance. He realized with horror that despite the betrayal, despite the trap... part of him didn't want to leave. The mystery wasn't how Vance got so rich. The mystery was why Jace, staring at the man who ruined him, felt a twisted sense of relief.
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-[#c81d11]">
+                    <span class="dialogue">"Sign it,"</span> Vance commanded softly.
+                </p>
+                <p class="narrative-text">
+                    With a shaking hand, Jace picked up the pen.
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-black text-[#f0eadd] py-8 border-t-4 border-[#c81d11] mt-auto">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h2 class="text-3xl comic-font mb-4 text-[#c81d11]">PROPERTY OF VANCE HOLDINGS</h2>
+            <div class="flex justify-center gap-4 mb-6">
+                 <button onclick="window.location.href='index.html'" class="border border-[#f0eadd] px-4 py-2 hover:bg-[#c81d11] hover:border-[#c81d11] hover:text-white transition-all uppercase font-bold text-xs">
+                    Return to Collection
+                 </button>
+            </div>
+            <p class="mt-8 text-xs font-mono opacity-50">© 2025 The Sunday Strip. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

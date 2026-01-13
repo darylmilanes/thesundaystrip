@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ang Huling Script</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Permanent+Marker&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* Shared Sunday Strip Styles */
+        :root {
+            --bg-paper: #f0eadd;
+            --ink-black: #1a1a1a;
+            --steamy-red: #c81d11;
+            --accent-blue: #2d5d7b;
+            --highlight-yellow: #f4d03f;
+            --rust: #8b4513; 
+        }
+
+        body {
+            background-color: var(--bg-paper);
+            background-image: radial-gradient(#d1cbbd 1px, transparent 1px);
+            background-size: 20px 20px;
+            color: var(--ink-black);
+            font-family: 'Courier Prime', monospace;
+        }
+
+        h1, h2, h3, .comic-font {
+            font-family: 'Bangers', cursive;
+            letter-spacing: 1px;
+        }
+
+        .marker-font {
+            font-family: 'Permanent Marker', cursive;
+        }
+
+        /* Hard Shadow / Comic Panel Effect */
+        .comic-panel-border {
+            border: 3px solid var(--ink-black);
+            box-shadow: 6px 6px 0px 0px var(--ink-black);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .comic-panel-border:hover {
+            transform: translate(-1px, -1px);
+            box-shadow: 8px 8px 0px 0px var(--ink-black);
+        }
+
+        .masthead {
+            border-bottom: 4px solid var(--ink-black);
+            border-top: 4px solid var(--ink-black);
+        }
+
+        .narrative-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        .dialogue {
+            font-weight: 700;
+            color: var(--steamy-red);
+            background-color: rgba(200, 29, 17, 0.05);
+            padding: 0 4px;
+            border-radius: 4px;
+        }
+
+        /* Special style for the "Script" reveal */
+        .script-paper {
+            background-color: white;
+            padding: 1.5rem;
+            border: 1px solid #ccc;
+            box-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            font-family: 'Courier New', Courier, monospace;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        .script-paper::before {
+            content: "SCRIPT";
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            font-size: 0.6rem;
+            color: #999;
+            border: 1px solid #999;
+            padding: 2px 4px;
+        }
+
+        .section-break {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 3rem 0;
+            opacity: 0.5;
+        }
+        .section-break::before, .section-break::after {
+            content: "";
+            flex: 1;
+            border-bottom: 2px dashed var(--ink-black);
+            margin: 0 1rem;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <!-- HEADER / NAV -->
+    <header class="w-full max-w-4xl mx-auto p-4 md:p-8">
+        <div class="flex justify-between items-center mb-4">
+            <a href="index.html" class="flex items-center gap-2 text-sm font-bold uppercase hover:text-[#c81d11] transition-colors">
+                <i data-lucide="arrow-left" size="16"></i> Back to Collection
+            </a>
+        </div>
+
+        <div class="masthead bg-white border-x-0 md:border-x-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] p-6 relative overflow-hidden text-center">
+            <div class="absolute top-2 left-2 text-4xl opacity-10 rotate-45">✦</div>
+            <div class="absolute bottom-2 right-2 text-4xl opacity-10 rotate-12">✦</div>
+            
+            <h1 class="text-5xl md:text-7xl leading-none uppercase relative z-10">
+                Ang Huling <br><span class="text-[#c81d11]">Script</span>
+            </h1>
+            <p class="mt-2 marker-font text-xl transform -rotate-2 text-gray-600">
+                ( A Method Acting )
+            </p>
+        </div>
+    </header>
+
+    <!-- MAIN READER CONTENT -->
+    <main class="flex-grow w-full max-w-3xl mx-auto px-4 pb-16">
+        
+        <!-- CHARACTERS -->
+        <div class="bg-white p-6 md:p-8 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,0.5)] mb-12 mt-12">
+            <h3 class="comic-font text-2xl mb-4 border-b-2 border-dashed border-gray-300 pb-2">Cast</h3>
+            <p class="narrative-text">
+                <strong class="uppercase text-[#8b4513]">Gio:</strong> 28, isang matagumpay na architect, misteryoso, at may matinding lungkot sa mga mata.
+            </p>
+            <p class="narrative-text mb-0">
+                <strong class="uppercase text-[#c81d11]">Lucas:</strong> 26, isang freelance actor na tumatanggap ng "boyfriend experience" gigs para sa extra income.
+            </p>
+        </div>
+
+        <!-- SCENE 1 -->
+        <section class="mb-16">
+            <div class="flex items-center gap-4 mb-4">
+                <span class="bg-black text-white text-xl font-bold px-3 py-1 comic-font transform -rotate-3">Scene 01</span>
+                <h2 class="text-3xl uppercase text-[#8b4513]">Ang Kontrata</h2>
+            </div>
+            
+            <div class="prose font-serif text-lg leading-relaxed">
+                <p class="narrative-text">
+                    Madilim ang loob ng penthouse unit ni Gio. Tanging ang ilaw mula sa city skyline ang tumatagos sa glass walls. Amoy mamahaling alak at pabango ng lalaki ang hangin. Nakatayo si Lucas sa gitna ng sala, hawak ang isang folder.
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-[#c81d11]">
+                    <span class="dialogue">"Nabasa mo na ang rules?"</span> tanong ni Gio, nakaupo sa sofa, hawak ang whiskey glass.
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-black">
+                    <span class="dialogue">"Oo. No personal questions. Stick to the character. At... bawal akong umalis hangga't hindi mo sinasabi,"</span> sagot ni Lucas sabay baba ng folder.
+                </p>
+                <p class="narrative-text">
+                    Tumayo si Gio. Dahan-dahan siyang lumapit kay Lucas. Ramdam ng binata ang bigat ng tingin nito—tila ba hinuhubaran siya hindi ng damit, kundi ng pagkatao.
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-[#c81d11]">
+                    <span class="dialogue">"Good. Simulan na natin. Tawagin mo akong 'Love'. At simula ngayon... sa’yo ako."</span>
+                </p>
+                <p class="narrative-text">
+                    Hinawakan ni Gio ang kwelyo ni Lucas. Sa isang iglap, nawala ang distansya. Ang propesyonalismo ni Lucas ay biglang naging tensyon.
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-black">
+                    <span class="dialogue">"Love... nandito na ‘ko,"</span> medyo paos na sagot ni Lucas.
+                </p>
+                <p class="narrative-text">
+                    Ngumisi si Gio, pero walang saya. May halong sakit at pagnanasa.
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-[#c81d11]">
+                    <span class="dialogue">"Patunayan mo."</span>
+                </p>
+            </div>
+        </section>
+
+        <div class="section-break text-2xl">✦</div>
+
+        <!-- SCENE 2 -->
+        <section class="mb-16">
+            <div class="flex items-center gap-4 mb-4 justify-end">
+                <h2 class="text-3xl uppercase text-[#c81d11]">Ang Pagganap</h2>
+                <span class="bg-[#c81d11] text-white text-xl font-bold px-3 py-1 comic-font transform rotate-2">Scene 02</span>
+            </div>
+
+            <div class="prose font-serif text-lg leading-relaxed">
+                <p class="narrative-text">
+                    Nasa kwarto na sila. Ang kama ay malawak at magulo ang sapin. Nakapatong si Gio kay Lucas, ang mga kamay nito ay mariing nakahawak sa pulsuhan ng binata, idinidiin ito sa unan. Mainit. Masyadong mainit ang paligid.
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-[#c81d11]">
+                    <span class="dialogue">"Namiss kita... Sobra,"</span> bulong ni Gio sa tenga ni Lucas, habang dumadampi ang labi sa leeg nito.
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-black">
+                    <span class="dialogue">"Gio—ah, Love... dahan-dahan..."</span> Lucas napapikit, kagat-labi.
+                </p>
+                <p class="narrative-text">
+                    Hindi ito ang karaniwang gig ni Lucas. Karaniwan, holding hands lang o date sa mall. Pero iba si Gio. Ang bawat haplos nito ay may halong desperasyon. Ang halik nito ay mapilit, tila ba gusto niyang sipsipin ang hininga ni Lucas.
+                </p>
+                <p class="narrative-text">
+                    Bumaba ang halik ni Gio sa dibdib ni Lucas. Ramdam ni Lucas ang kuryente sa bawat dampi ng balat. Kahit anong pigil niya, kusa siyang napapa-arch palapit sa katawan ni Gio.
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-[#c81d11]">
+                    <span class="dialogue">"Sabihin mo sa’kin na hindi mo ako iiwan ulit."</span>
+                </p>
+                <p class="narrative-text">
+                    Ramdam ni Lucas ang panginginig ng mga kamay ni Gio habang tinatanggal ang butones ng pantalon niya. The friction was intoxicating. It felt too real.
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-black">
+                    <span class="dialogue">"Hindi... hindi ako aalis,"</span> Lucas napahawak sa buhok ni Gio, hinihila ito palapit.
+                </p>
+                <p class="narrative-text">
+                    Tinignan siya ni Gio. Mata sa mata. Pawis na pawis silang dalawa, ang mga hininga ay naghahabol. Sa sandaling iyon, nakalimutan ni Lucas na umaarte lang siya. Ang init ng katawan ni Gio, ang higpit ng yakap—parang pamilyar. Parang... tama.
+                </p>
+                <p class="narrative-text">
+                    Inangkin ni Gio ang mga labi niya, malalim at mapusok. Wala nang salita, puro ungol at kaluskos na lang ng balat sa balat ang naririnig sa kwarto. It was a chaotic dance of dominance and submission.
+                </p>
+            </div>
+        </section>
+
+        <div class="section-break text-2xl">✦</div>
+
+        <!-- SCENE 3 -->
+        <section class="mb-16">
+            <div class="flex items-center gap-4 mb-4">
+                <span class="bg-black text-white text-xl font-bold px-3 py-1 comic-font transform -rotate-1">Scene 03</span>
+                <h2 class="text-3xl uppercase text-[#8b4513]">Ang Lamat</h2>
+            </div>
+
+            <div class="prose font-serif text-lg leading-relaxed">
+                <p class="narrative-text">
+                    Tapos na ang init. Nakahiga sila pareho, nakatingin sa kisame. Ang braso ni Lucas ay nakadantay sa noo niya, pilit na kinakalma ang tibok ng puso.
+                </p>
+                <p class="narrative-text">
+                    Tumayo si Gio at naglakad papunta sa bintana. Nakatalikod ito, pero nakikita ni Lucas ang panginginig ng balikat nito.
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-black">
+                    <span class="dialogue">"Okay ka lang? Masyado bang... intense?"</span>
+                </p>
+                <p class="narrative-text">
+                    Hindi sumagot si Gio. Sa halip, nagsalita ito ng mahina.
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-[#c81d11]">
+                    <span class="dialogue">"Bakit hindi mo sinuot 'yung singsing?"</span>
+                </p>
+                <p class="narrative-text">
+                    Napabangon si Lucas. Kumunot ang noo niya.
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-black">
+                    <span class="dialogue">"Ha? Walang singsing sa script, Gio. Ang sabi lang sa instruction, magsuot ako ng puting polo at—"</span>
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-[#c81d11]">
+                    <span class="dialogue">"Wag mo akong pinaglololoko! Alam mong hindi ako makakatulog nang wala 'yun!"</span> humarap si Gio, galit at naluluha.
+                </p>
+                <p class="narrative-text">
+                    Natigilan si Lucas. Lumagpas na si Gio sa roleplay. Nagiging delikado na.
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-black">
+                    <span class="dialogue">"Gio, teka lang. Time out muna. Actor lang ako, okay? Binayaran mo ako para—"</span>
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-[#c81d11]">
+                    <span class="dialogue">"Binayaran?!"</span> Tumawa ng mapakla si Gio. <span class="dialogue">"Lucas, tumigil ka na sa pagpapanggap! Ilang buwan na tayong ganito? Ilang beses mo pa ba akong papahirapan?"</span>
+                </p>
+            </div>
+        </section>
+
+        <div class="section-break text-2xl">✦</div>
+
+        <!-- SCENE 4 -->
+        <section class="mb-16">
+            <div class="flex items-center gap-4 mb-4 justify-end">
+                <h2 class="text-3xl uppercase text-[#2d5d7b]">Ang Rebelasyon</h2>
+                <span class="bg-[#2d5d7b] text-white text-xl font-bold px-3 py-1 comic-font transform rotate-3">Scene 04</span>
+            </div>
+
+            <div class="prose font-serif text-lg leading-relaxed">
+                <p class="narrative-text">
+                    Kinabahan na si Lucas. Kinuha niya ang damit niya at mabilis na nagbihis. Kailangan na niyang umalis. Mukhang may mental instability ang client niya.
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-black">
+                    <span class="dialogue">"Aalis na ako. Ise-send ko na lang ang invoice sa agency."</span>
+                </p>
+                <p class="narrative-text">
+                    Naglakad siya papunta sa pinto, pero mabilis siyang hinarangan ni Gio. Hinawakan siya nito sa braso, mahigpit.
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-[#c81d11]">
+                    <span class="dialogue">"Walang agency, Lucas!"</span>
+                </p>
+                <p class="narrative-text">
+                    <span class="dialogue">"Anong walang agency? Ang kausap ko si Ms. Reyes! Sila ang nagpadala ng script!"</span>
+                </p>
+                <p class="narrative-text">
+                    Hinila siya ni Gio papunta sa isang cabinet sa sala. Binuksan niya ito ng padabog. Bumungad kay Lucas ang daan-daang piraso ng papel. Mga script. Kinuha ni Lucas ang isa. Nanlaki ang mata niya.
+                </p>
+                <p class="narrative-text font-bold mb-2">Ang sulat kamay sa script... ay sa kanya.</p>
+                
+                <div class="script-paper">
+                    <p class="font-bold border-b border-gray-300 pb-1 mb-2">SCRIPT TITLE: Scene 1 - Ang Unang Pagkikita</p>
+                    <p class="text-xs text-gray-500 mb-2">DATE: June 12, 2023</p>
+                    <p class="font-mono"><strong>LUCAS:</strong> Hi, pwede maki-share ng table? Puno na kasi.</p>
+                </div>
+
+                <p class="narrative-text">
+                    Binasa niya ang isa pa.
+                </p>
+
+                <div class="script-paper">
+                    <p class="font-bold border-b border-gray-300 pb-1 mb-2">SCRIPT TITLE: Scene 50 - Ang Aksidente</p>
+                    <p class="text-xs text-gray-500 mb-2">DATE: November 01, 2024</p>
+                    <p class="font-mono"><strong>EXT. HIGHWAY - NIGHT</strong></p>
+                </div>
+
+                <p class="narrative-text">
+                    Nagsimulang sumakit ang ulo ni Lucas. Isang matinding kirot na parang binibiak ang bungo niya.
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-[#c81d11]">
+                    <span class="dialogue">"Sabi ng doktor, hayaan daw kita,"</span> Gio cried, hugging Lucas from behind. <span class="dialogue">"Sabi nila, 'dissociative amnesia' dahil sa trauma. Na kailangan kong sakyan ang pantasya mo na isa kang actor at ako ang client... para unti-unti kang bumalik."</span>
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-black">
+                    <span class="dialogue">"Hindi... hindi totoo 'yan."</span> Pero nanginginig na ang tuhod ni Lucas.
+                </p>
+                <p class="narrative-text">
+                    <span class="dialogue">"Ikaw ang nagsusulat ng mga script, Lucas. Tuwing umaga, gigising ka na hindi mo ako kilala. Magpapanggap kang may agency. At ako... ako 'yung tanga na babayaran ka kunwari para lang mahawakan kita. Para lang marinig kong tawagin mo akong 'Love' kahit sa loob lang ng roleplay."</span>
+                </p>
+            </div>
+        </section>
+
+        <!-- EPILOGUE -->
+        <div class="section-break"></div>
+        
+        <section class="mb-16">
+            <div class="text-center mb-8">
+                <h2 class="text-4xl comic-font uppercase">Scene 5: Reality</h2>
+                <div class="w-24 h-1 bg-black mx-auto mt-2"></div>
+            </div>
+
+            <div class="bg-white p-8 border-4 border-double border-black relative shadow-[8px_8px_0px_0px_rgba(0,0,0,0.2)]">
+                <p class="narrative-text">
+                    Napaluhod si Lucas sa sahig. Ang mga alaala ay biglang rumagasa—hindi dahan-dahan, kundi parang baha.
+                </p>
+                <p class="narrative-text italic text-gray-600">
+                    Ang kotse. Ang ulan. Ang sigaw ni Gio. Ang dugong umaagos sa noo niya habang pilit niyang inaabot ang kamay ni Gio bago siya nawalan ng malay. Ang guilt na siya ang nagmamaneho nung gabing muntik na silang mamatay pareho.
+                </p>
+                <p class="narrative-text">
+                    Ang "Actor Lucas" ay defense mechanism ng utak niya para takasan ang katotohanang muntik na niyang mapatay ang taong mahal niya. Tumingala si Lucas kay Gio. Ang luhang kanina ay akala niya ay dahil sa roleplay, ngayon ay alam niyang dahil sa pagod at pagmamahal.
+                </p>
+                <p class="narrative-text">
+                    Dahan-dahang hinawakan ni Lucas ang mukha ni Gio. Ang pamilyar na init. Ang amoy na kanina pa niya hinahanap-hanap.
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-black">
+                    <span class="dialogue">"Gio..."</span>
+                </p>
+                <p class="narrative-text">
+                    Hindi na 'Love' na pilit, kundi pangalan ng taong kilalang-kilala niya. Napahagulgol si Gio at niyakap siya nang mahigpit.
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-black">
+                    <span class="dialogue">"Pagod na 'ko umarte, Gio. Ayoko na."</span>
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-[#c81d11]">
+                    <span class="dialogue">"Okay lang... nandito na ako. Tapos na ang eksena."</span>
+                </p>
+                <p class="narrative-text mb-0">
+                    Sa labas, tumigil na ang ulan. Tahimik na ang siyudad. Wala nang script, wala nang bayad. Tanging dalawang taong basag, na pilit na binubuo ang isa't isa sa gitna ng realidad.
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-black text-[#f0eadd] py-8 border-t-4 border-[#c81d11] mt-auto">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h2 class="text-3xl comic-font mb-4 text-[#c81d11]">WAKAS</h2>
+            <div class="flex justify-center gap-4 mb-6">
+                 <button onclick="window.location.href='index.html'" class="border border-[#f0eadd] px-4 py-2 hover:bg-[#c81d11] hover:border-[#c81d11] hover:text-white transition-all uppercase font-bold text-xs">
+                    Return to Collection
+                 </button>
+            </div>
+            <p class="mt-8 text-xs font-mono opacity-50">© 2025 The Sunday Strip. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

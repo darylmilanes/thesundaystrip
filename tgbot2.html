@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The God of Broken Things: Part II</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Permanent+Marker&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* Shared Sunday Strip Styles */
+        :root {
+            --bg-paper: #f0eadd;
+            --ink-black: #1a1a1a;
+            --steamy-red: #c81d11;
+            --accent-blue: #2d5d7b;
+            --highlight-yellow: #f4d03f;
+            --rust: #8b4513; 
+        }
+
+        body {
+            background-color: var(--bg-paper);
+            background-image: radial-gradient(#d1cbbd 1px, transparent 1px);
+            background-size: 20px 20px;
+            color: var(--ink-black);
+            font-family: 'Courier Prime', monospace;
+        }
+
+        h1, h2, h3, .comic-font {
+            font-family: 'Bangers', cursive;
+            letter-spacing: 1px;
+        }
+
+        .marker-font {
+            font-family: 'Permanent Marker', cursive;
+        }
+
+        /* Hard Shadow / Comic Panel Effect */
+        .comic-panel-border {
+            border: 3px solid var(--ink-black);
+            box-shadow: 6px 6px 0px 0px var(--ink-black);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .comic-panel-border:hover {
+            transform: translate(-1px, -1px);
+            box-shadow: 8px 8px 0px 0px var(--ink-black);
+        }
+
+        .masthead {
+            border-bottom: 4px solid var(--ink-black);
+            border-top: 4px solid var(--ink-black);
+        }
+
+        .narrative-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        .dialogue {
+            font-weight: 700;
+            color: var(--steamy-red);
+            background-color: rgba(200, 29, 17, 0.05);
+            padding: 0 4px;
+            border-radius: 4px;
+        }
+
+        .section-break {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 3rem 0;
+            opacity: 0.5;
+        }
+        .section-break::before, .section-break::after {
+            content: "";
+            flex: 1;
+            border-bottom: 2px dashed var(--ink-black);
+            margin: 0 1rem;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <!-- HEADER / NAV -->
+    <header class="w-full max-w-4xl mx-auto p-4 md:p-8">
+        <div class="flex justify-between items-center mb-4">
+            <a href="index.html" class="flex items-center gap-2 text-sm font-bold uppercase hover:text-[#c81d11] transition-colors">
+                <i data-lucide="arrow-left" size="16"></i> Back to Collection
+            </a>
+        </div>
+
+        <div class="masthead bg-white border-x-0 md:border-x-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] p-6 relative overflow-hidden text-center">
+            <div class="absolute top-2 left-2 text-4xl opacity-10 rotate-45">✦</div>
+            <div class="absolute bottom-2 right-2 text-4xl opacity-10 rotate-12">✦</div>
+            
+            <h1 class="text-5xl md:text-7xl leading-none uppercase relative z-10">
+                The God of <br><span class="text-[#c81d11]">Broken Things</span>
+            </h1>
+            <p class="mt-2 marker-font text-xl transform -rotate-2 text-gray-600">
+                ( Part II: The Entropy of Desire )
+            </p>
+        </div>
+    </header>
+
+    <!-- MAIN READER CONTENT -->
+    <main class="flex-grow w-full max-w-3xl mx-auto px-4 pb-16">
+        
+        <!-- INTRO TEXT -->
+        <div class="bg-white p-6 md:p-8 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,0.5)] mb-12 mt-12">
+            <p class="narrative-text">
+                Bumalik si Elian. Hindi dahil gusto niya, kundi dahil hindi niya kayang wala sa Iron Valley. Pero may nagbago. Mas mainit ang pugon ngayon. Mas mabigat ang hangin.
+            </p>
+            <p class="narrative-text mb-0">
+                Alam ni Kael na hindi na lang ito tungkol sa pag-aayos. May lamat na ang kanilang "tahimik." At sa bawat lamat, may liwanag na pilit kumakawala.
+            </p>
+        </div>
+
+        <!-- SCENE 1 -->
+        <section class="mb-16">
+            <div class="flex items-center gap-4 mb-4">
+                <span class="bg-black text-white text-xl font-bold px-3 py-1 comic-font transform -rotate-3">Scene 01</span>
+                <h2 class="text-3xl uppercase text-[#8b4513]">The Collector</h2>
+            </div>
+            
+            <div class="prose font-serif text-lg leading-relaxed">
+                <p class="narrative-text">
+                    Dumating si Valerius sakay ng isang karwaheng ginto. Isang "Collector" mula sa Upper Realm. Malinis siya. Walang bahid ng uling. Ang suot niya ay puting sutla na hindi man lang nadudumihan sa alikabok ng pandayan.
+                </p>
+                <p class="narrative-text">
+                    Tiningnan ni Valerius si Kael mula ulo hanggang paa—ang marumi niyang apron, ang pawis sa noo, ang itim na kuko. Isang tingin na para bang basura ang nasa harap niya. Pagkatapos, bumaling siya kay Elian.
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-black">
+                    <span class="dialogue">"You don't belong here, Starlight,"</span> sabi ni Valerius, sabay hawak sa baba ni Elian. <span class="dialogue">"Ang dumi rito. Hindi bagay sa kutis mo ang abo."</span>
+                </p>
+                <p class="narrative-text">
+                    Napahigpit ang hawak ni Kael sa maso. Gusto niyang ibagsak ito sa bungo ng estranghero. Pero naramdaman niya ang hiya. Totoo naman. Dumi siya. At si Elian... si Elian ay ginto.
+                </p>
+            </div>
+        </section>
+
+        <div class="section-break text-2xl">✦</div>
+
+        <!-- SCENE 2 -->
+        <section class="mb-16">
+            <div class="flex items-center gap-4 mb-4 justify-end">
+                <h2 class="text-3xl uppercase text-[#c81d11]">Marked by Soot</h2>
+                <span class="bg-[#c81d11] text-white text-xl font-bold px-3 py-1 comic-font transform rotate-2">Scene 02</span>
+            </div>
+
+            <div class="prose font-serif text-lg leading-relaxed">
+                <p class="narrative-text">
+                    Nakaalis na si Valerius, pero naiwan ang lason ng mga salita niya. Tahimik si Kael habang nagpupukpok ng bakal. <span class="dialogue">"Bagay kayo,"</span> basag ni Kael sa katahimikan. <span class="dialogue">"Pareho kayong malinis. Parehong mahal."</span>
+                </p>
+                <p class="narrative-text">
+                    Hindi sumagot si Elian. Sa halip, lumapit siya. Hinawakan niya ang kwelyo ng basang-basa na sando ni Kael at hinila ito pababa.
+                </p>
+                <p class="narrative-text">
+                    Napaupo si Kael sa anvil. Mainit pa ito, pero mas mainit ang titig ni Elian. Sumampa si Elian sa kanya, ang puting binti nito ay pumulupot sa bewang ng panday na puno ng uling.
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-[#c81d11]">
+                    <span class="dialogue">"Ayoko ng malinis,"</span> bulong ni Elian sa tenga ni Kael. Kinagat niya ang earlobe ng panday. <span class="dialogue">"Gusto ko 'yung nalalasahan ko 'yung bakal. Gusto ko 'yung... ganito."</span>
+                </p>
+                <p class="narrative-text">
+                    Hinawakan ni Elian ang maruming kamay ni Kael at idiniin ito sa sarili niyang dibdib, sa loob ng kanyang damit. Iniwan ng itim na uling ang marka ng mga daliri ni Kael sa maputing balat ng Dyos. Ang kontrast ay nakaka-lasing. Ang dumi ni Kael, naging sining sa balat ni Elian.
+                </p>
+            </div>
+        </section>
+
+        <div class="section-break text-2xl">✦</div>
+
+        <!-- SCENE 3 -->
+        <section class="mb-16">
+            <div class="flex items-center gap-4 mb-4">
+                <span class="bg-black text-white text-xl font-bold px-3 py-1 comic-font transform -rotate-1">Scene 03</span>
+                <h2 class="text-3xl uppercase text-[#8b4513]">The Crack in Reality</h2>
+            </div>
+
+            <div class="prose font-serif text-lg leading-relaxed">
+                <p class="narrative-text">
+                    Pagkatapos ng init, dumating ang lamig. Nakahiga sila sa sahig ng pandayan, balot ng pawis at abo. Pero napansin ni Kael ang isang kakaiba.
+                </p>
+                <p class="narrative-text">
+                    Ang pader ng pandayan... "nag-gli-glitch." Parang static sa lumang telebisyon. Minsan nawawala ang dingding, nakikita ang kawalan sa likod.
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-black">
+                    <span class="dialogue">"Elian, anong nangyayari?"</span> tanong ni Kael.
+                </p>
+                <p class="narrative-text">
+                    Tumingin si Elian sa kanya. Wala nang lambing sa mata nito. Lungkot na lang. Sobrang lalim na lungkot.
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-[#c81d11]">
+                    <span class="dialogue">"Sabi ko sa'yo noon, Kael... Ako ang God of Broken Things. Hindi ako nag-aayos. Naninira ako."</span>
+                </p>
+                <p class="narrative-text">
+                    Tumayo si Elian. At sa bawat hakbang niya, nababasag ang sahig. Hindi dahil sa bigat, kundi dahil naglalaho ito.
+                </p>
+            </div>
+        </section>
+
+        <div class="section-break text-2xl">✦</div>
+
+        <!-- SCENE 4 -->
+        <section class="mb-16">
+            <div class="flex items-center gap-4 mb-4 justify-end">
+                <h2 class="text-3xl uppercase text-[#c81d11]">The Truth</h2>
+                <span class="bg-[#c81d11] text-white text-xl font-bold px-3 py-1 comic-font transform rotate-3">Scene 04</span>
+            </div>
+
+            <div class="prose font-serif text-lg leading-relaxed">
+                <p class="narrative-text">
+                    <span class="dialogue">"Si Valerius,"</span> sabi ni Elian habang umiiyak ng luhang ginto. <span class="dialogue">"Hindi siya karibal. Siya ang Reality. Sinusundo niya ako kasi... kasi bawal ang ginawa ko."</span>
+                </p>
+                <p class="narrative-text">
+                    Hinawakan ni Kael ang sarili niyang kamay. Nanginginig ito. Pero hindi dahil sa takot. Nanginginig ito kasi... nagiging alikabok na ito.
+                </p>
+                <p class="narrative-text">
+                    <span class="dialogue">"Anong ginawa mo?"</span> sigaw ni Kael.
+                </p>
+                <p class="narrative-text">
+                    Lumapit si Elian at hinawakan ang mukha ni Kael na unti-unti nang naglalaho.
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-[#c81d11]">
+                    <span class="dialogue">"Ikaw ang Broken Thing, Kael. Hindi ka tao. Ikaw 'yung paborito kong memorya na binigyan ko ng anyo. Binase kita sa isang pangarap. Pero hindi ka totoo. At sinisira ng existence mo ang universe ko."</span>
+                </p>
+                <p class="narrative-text">
+                    Napagtanto ni Kael ang katotohanan. Wala siyang nakaraan bago dumating si Elian. Siya ang obra. Si Elian ang manlilikha na kailangang sumira para maging balanse ang lahat.
+                </p>
+            </div>
+        </section>
+
+        <!-- EPILOGUE -->
+        <div class="section-break"></div>
+        
+        <section class="mb-16">
+            <div class="text-center mb-8">
+                <h2 class="text-4xl comic-font uppercase">Epilogue</h2>
+                <div class="w-24 h-1 bg-black mx-auto mt-2"></div>
+            </div>
+
+            <div class="bg-[#fff] p-8 border-2 border-dashed border-black">
+                <p class="narrative-text">
+                    Wala na ang pandayan. Wala na ang Iron Valley.
+                </p>
+                <p class="narrative-text">
+                    Nasa puting kwarto na lang si Elian. Malinis. Walang dumi. Walang init.
+                </p>
+                <p class="narrative-text mb-0">
+                    Sa sahig, may isang lumang leather apron. Puno ng uling. Puno ng butas. Ito lang ang natira. Niyakap ito ni Elian, at sa unang pagkakataon, ang Diyos ng mga Sirang Bagay ay nanalangin na sana... sana kaya niyang mag-ayos, kahit isang beses lang.
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-black text-[#f0eadd] py-8 border-t-4 border-[#c81d11] mt-auto">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h2 class="text-3xl comic-font mb-4 text-[#c81d11]">THE END?</h2>
+            <p class="mt-8 text-xs font-mono opacity-50">© 2025 The Sunday Strip. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

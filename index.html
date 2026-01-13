@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Sunday Strip</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Permanent+Marker&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* Custom Styles for the Comic Aesthetic */
+        :root {
+            --bg-paper: #f0eadd;
+            --ink-black: #1a1a1a;
+            --steamy-red: #c81d11;
+            --accent-blue: #2d5d7b;
+            --highlight-yellow: #f4d03f;
+        }
+
+        body {
+            background-color: var(--bg-paper);
+            background-image: radial-gradient(#d1cbbd 1px, transparent 1px);
+            background-size: 20px 20px;
+            color: var(--ink-black);
+            font-family: 'Courier Prime', 'Courier New', Courier, monospace;
+        }
+
+        h1, h2, h3, .comic-font {
+            font-family: 'Bangers', 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', sans-serif;
+            letter-spacing: 1px;
+        }
+
+        .marker-font {
+            font-family: 'Permanent Marker', 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', sans-serif;
+        }
+
+        /* Comic Panel Styling */
+        .comic-panel {
+            background-color: white;
+            border: 3px solid var(--ink-black);
+            box-shadow: 6px 6px 0px 0px var(--ink-black);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .comic-panel:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 10px 10px 0px 0px var(--ink-black);
+        }
+
+        /* Comic Speech Bubble */
+        .speech-bubble {
+            position: relative;
+            background: #fff;
+            border: 2px solid var(--ink-black);
+            border-radius: .4em;
+        }
+        .speech-bubble:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border: 10px solid transparent;
+            border-top-color: var(--ink-black);
+            border-bottom: 0;
+            border-left: 0;
+            margin-left: -10px;
+            margin-bottom: -10px;
+        }
+
+        /* Masthead Styling */
+        .masthead {
+            border-bottom: 4px solid var(--ink-black);
+            border-top: 4px solid var(--ink-black);
+        }
+
+        /* Scrollbar styling for modal */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-paper); 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--ink-black); 
+            border: 1px solid var(--bg-paper);
+        }
+
+        /* Diagonal stripes for "Censored/Steamy" effect */
+        .censored-bg {
+            background: repeating-linear-gradient(
+                45deg,
+                rgba(200, 29, 17, 0.1),
+                rgba(200, 29, 17, 0.1) 10px,
+                rgba(200, 29, 17, 0.05) 10px,
+                rgba(200, 29, 17, 0.05) 20px
+            );
+        }
+        
+        .modal-open {
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <!-- MASTHEAD HEADER -->
+    <header class="w-full max-w-6xl mx-auto p-4 md:p-8">
+        <div class="masthead flex flex-col items-center justify-center py-6 bg-white border-x-0 md:border-x-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] relative overflow-hidden">
+            
+            <!-- Top Metadata Strip (Retained as requested) -->
+            <div class="w-full flex justify-between px-4 mb-2 text-xs md:text-sm font-bold uppercase tracking-widest border-b-2 border-black pb-2">
+                <span>Vol. 69</span>
+                <span>Late Night Edition</span>
+                <span>Price: Your Soul</span>
+            </div>
+
+            <!-- Main Title -->
+            <h1 class="text-6xl md:text-8xl text-center leading-none uppercase relative z-10 px-4">
+                The Sunday <span class="text-[#c81d11]">Strip</span>
+            </h1>
+
+            <!-- Subtitle/Slogan -->
+            <p class="mt-2 marker-font text-lg md:text-xl transform -rotate-1 text-gray-600">
+                "Where the ink never dries and the lights stay low."
+            </p>
+
+            <!-- Decorative corner elements -->
+            <div class="absolute top-2 left-2 text-4xl opacity-10 rotate-45">✦</div>
+            <div class="absolute bottom-2 right-2 text-4xl opacity-10 rotate-12">✦</div>
+        </div>
+    </header>
+
+    <!-- MAIN GRID CONTENT -->
+    <main class="flex-grow w-full max-w-6xl mx-auto px-4 pb-16">
+        <div id="story-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Stories will be injected here by JS -->
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-black text-[#f0eadd] py-8 border-t-4 border-[#c81d11] mt-auto">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <h2 class="text-3xl comic-font mb-4">See You Next Sunday</h2>
+            <p class="text-sm opacity-70 max-w-md mx-auto">
+                All stories are fictional. Any resemblance to real persons, living or dead, is purely coincidental and probably hotter in print.
+            </p>
+            <div class="mt-6 flex justify-center space-x-4">
+                <a href="#" class="hover:text-[#c81d11] transition-colors"><i data-lucide="twitter"></i></a>
+                <a href="#" class="hover:text-[#c81d11] transition-colors"><i data-lucide="instagram"></i></a>
+                <a href="#" class="hover:text-[#c81d11] transition-colors"><i data-lucide="mail"></i></a>
+            </div>
+            <p class="mt-8 text-xs font-mono">© 2025 The Sunday Strip. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- READING MODAL -->
+    <div id="read-modal" class="fixed inset-0 z-50 hidden">
+        <!-- Backdrop -->
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeModal()"></div>
+        
+        <!-- Modal Content -->
+        <div class="absolute inset-0 md:inset-10 bg-[#f0eadd] md:rounded-lg shadow-2xl overflow-hidden flex flex-col md:max-w-4xl md:mx-auto border-4 border-white md:border-black animate-in fade-in zoom-in duration-200">
+            
+            <!-- Modal Header -->
+            <div class="bg-black text-white p-4 flex justify-between items-center border-b-4 border-[#c81d11]">
+                <div>
+                    <h2 id="modal-title" class="text-2xl md:text-3xl comic-font tracking-wider">Title Here</h2>
+                    <p id="modal-meta" class="text-xs font-mono text-gray-300">Author • Date</p>
+                </div>
+                <button onclick="closeModal()" class="hover:text-[#c81d11] transition-colors">
+                    <i data-lucide="x" size="32"></i>
+                </button>
+            </div>
+
+            <!-- Modal Body (Scrollable) -->
+            <div class="flex-grow overflow-y-auto p-6 md:p-12 text-lg leading-relaxed">
+                <div class="max-w-2xl mx-auto">
+                    <!-- Dynamic Content -->
+                    <div id="modal-content">
+                        <!-- Story text goes here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="p-4 bg-white border-t-2 border-black flex justify-between items-center">
+                <span class="text-xs font-bold uppercase tracking-widest text-gray-500">End of Excerpt</span>
+                <button class="bg-[#c81d11] text-white px-6 py-2 font-bold uppercase comic-font text-xl border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-y-1 hover:shadow-none transition-all">
+                    Read Full Story
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // MOCK DATA: The Stories
+        const stories = [
+            {
+                id: 1,
+                title: "The God of Broken Things",
+                author: "Kael & Elian",
+                date: "Jan 04",
+                tags: ["Fantasy", "Angst", "Steamy"],
+                spicyLevel: 3,
+                summary: "He hated broken things. Then he found a fallen angel in the scrap heap. A sensual cut.",
+                link: "the-god-of-broken-things.html",
+                excerpt: "N/A - Opens External File"
+            },
+            {
+                id: 2,
+                title: "The God of Broken Things II",
+                author: "Kael & Elian",
+                date: "Jan 11",
+                tags: ["Fantasy", "Angst", "Steamy"],
+                spicyLevel: 4,
+                summary: "Part II: The Entropy of Desire. Elian returned, but the furnace is hotter now. Reality is starting to crack.",
+                link: "tgbot2.html",
+                excerpt: "N/A - Opens External File"
+            },
+            {
+                id: 3,
+                title: "Enemy Lines",
+                author: "Rix & Vaughn",
+                date: "Jan 18",
+                tags: ["Enemies to Lovers", "Angst", "Steamy", "Sci-Fi"],
+                spicyLevel: 5,
+                summary: "We were supposed to kill each other. Instead, we found ourselves in a safe house with only one bed.",
+                link: "enemy-lines.html",
+                excerpt: "N/A - Opens External File"
+            },
+            {
+                id: 4,
+                title: "Assets and Liabilities",
+                author: "Jace & Vance",
+                date: "Jan 25",
+                tags: ["Office Romance", "Power Play", "Plot Twist"],
+                spicyLevel: 5,
+                summary: "I merged my company with his to save it. I didn't realize he was buying me too.",
+                link: "assets-and-liabilities.html",
+                excerpt: "N/A - Opens External File"
+            },
+            {
+                id: 5,
+                title: "Ang Huling Script",
+                author: "Gio & Lucas",
+                date: "Feb 01",
+                tags: ["Drama", "Plot Twist", "Romance"],
+                spicyLevel: 4,
+                summary: "I'm a paid actor for his roleplay fantasies. But why does his apartment feel so familiar?",
+                link: "ang-huling-script.html",
+                excerpt: "N/A - Opens External File"
+            },
+            {
+                id: 6,
+                title: "Ang Huling Ritwal",
+                author: "Caleb & Juno",
+                date: "Feb 08",
+                tags: ["Psychological", "BL", "Obsession"],
+                spicyLevel: 5,
+                summary: "He kept me inside to protect me. But who is protecting me from him? A story of obsession and fractured reality.",
+                link: "ang-huling-ritwal.html",
+                excerpt: "N/A - Opens External File"
+            },
+            {
+                id: 7,
+                title: "Sa Huli, Ang Normal",
+                author: "Nico & Dante",
+                date: "Feb 15",
+                tags: ["Betrayal", "Drama", "Steamy"],
+                spicyLevel: 5,
+                summary: "A passionate goodbye in a cheap hotel. One final encounter before he leaves for a 'normal' life. But who defines normal?",
+                link: "sa-huli-ang-normal.html",
+                excerpt: "N/A - Opens External File"
+            }
+        ];
+
+        // RENDER STORIES
+        const grid = document.getElementById('story-grid');
+
+        function renderStories(filterTag = 'all') {
+            grid.innerHTML = '';
+            
+            const filtered = filterTag === 'all' 
+                ? stories 
+                : stories.filter(s => s.tags.includes(filterTag));
+
+            filtered.forEach(story => {
+                // Create Spicy Pepper String
+                const peppers = '🌶️'.repeat(story.spicyLevel);
+                
+                // Create Tags HTML
+                const tagsHtml = story.tags.map(tag => 
+                    `<span class="inline-block bg-yellow-200 border border-black px-2 py-1 text-xs font-bold uppercase mr-1 mb-1 transform -rotate-2">${tag}</span>`
+                ).join('');
+
+                const card = document.createElement('article');
+                card.className = 'comic-panel flex flex-col h-full relative group cursor-pointer';
+                
+                // --- CLICK HANDLER ---
+                if (story.link) {
+                    // Direct Navigation for external files
+                    card.onclick = () => window.location.href = story.link;
+                } else {
+                    // Modal for standard internal stories
+                    card.onclick = () => openModal(story);
+                }
+                
+                card.innerHTML = `
+                    <!-- Header Area (Replacing Image) -->
+                    <div class="h-24 w-full border-b-3 border-black relative overflow-hidden bg-gray-200 flex items-center justify-center">
+                        <div class="text-6xl opacity-10 font-black tracking-tighter select-none">
+                            ${story.date}
+                        </div>
+                        
+                        <!-- Date Badge -->
+                        <div class="absolute top-2 left-2 bg-white border-2 border-black px-2 py-1 font-bold text-xs shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] z-10">
+                            ${story.date}
+                        </div>
+
+                        <!-- Spicy Level -->
+                        <div class="absolute bottom-2 right-2 bg-black text-white px-2 py-1 font-bold text-xs border border-white z-10">
+                            ${peppers}
+                        </div>
+                    </div>
+
+                    <!-- Content Area -->
+                    <div class="p-5 flex-grow flex flex-col relative censored-bg">
+                        <h3 class="text-2xl mb-2 uppercase leading-none group-hover:text-[#c81d11] transition-colors">${story.title}</h3>
+                        
+                        <div class="mb-4">
+                            ${tagsHtml}
+                        </div>
+
+                        <!-- Summary formatted as speech bubble -->
+                        <div class="speech-bubble p-3 text-sm italic mb-4 flex-grow relative z-10">
+                            "${story.summary}"
+                        </div>
+
+                        <div class="mt-auto flex justify-between items-center border-t-2 border-black pt-3 border-dashed">
+                            <span class="text-xs font-bold uppercase text-gray-500">By ${story.author}</span>
+                            <span class="text-xs font-bold uppercase text-[#c81d11] group-hover:underline">Read Issue &rarr;</span>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // MODAL LOGIC
+        const modal = document.getElementById('read-modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalMeta = document.getElementById('modal-meta');
+        const modalContent = document.getElementById('modal-content');
+
+        function openModal(story) {
+            modalTitle.innerText = story.title;
+            modalMeta.innerText = `Authored by ${story.author} • Released ${story.date}`;
+            
+            // Format content to look like manuscript
+            modalContent.innerHTML = `
+                <p class="mb-6 font-bold text-xl italic border-l-4 border-[#c81d11] pl-4">
+                    ${story.summary}
+                </p>
+                <div class="font-serif space-y-4">
+                    <p>${story.excerpt}</p>
+                    <p>...</p>
+                    <p class="opacity-50 text-sm">[Content Hidden for Preview]</p>
+                </div>
+            `;
+            
+            modal.classList.remove('hidden');
+            document.body.classList.add('modal-open');
+        }
+
+        function closeModal() {
+            modal.classList.add('hidden');
+            document.body.classList.remove('modal-open');
+        }
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Escape") {
+                closeModal();
+            }
+        });
+
+        // Initial Render
+        renderStories();
+
+    </script>
+</body>
+</html>

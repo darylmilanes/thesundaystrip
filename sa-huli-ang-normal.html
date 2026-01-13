@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sa Huli, Ang Normal</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Permanent+Marker&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* Shared Sunday Strip Styles */
+        :root {
+            --bg-paper: #f0eadd;
+            --ink-black: #1a1a1a;
+            --steamy-red: #c81d11;
+            --accent-blue: #2d5d7b;
+            --highlight-yellow: #f4d03f;
+            --rust: #8b4513; 
+        }
+
+        body {
+            background-color: var(--bg-paper);
+            background-image: radial-gradient(#d1cbbd 1px, transparent 1px);
+            background-size: 20px 20px;
+            color: var(--ink-black);
+            font-family: 'Courier Prime', monospace;
+        }
+
+        h1, h2, h3, .comic-font {
+            font-family: 'Bangers', cursive;
+            letter-spacing: 1px;
+        }
+
+        .marker-font {
+            font-family: 'Permanent Marker', cursive;
+        }
+
+        /* Hard Shadow / Comic Panel Effect */
+        .comic-panel-border {
+            border: 3px solid var(--ink-black);
+            box-shadow: 6px 6px 0px 0px var(--ink-black);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .comic-panel-border:hover {
+            transform: translate(-1px, -1px);
+            box-shadow: 8px 8px 0px 0px var(--ink-black);
+        }
+
+        .masthead {
+            border-bottom: 4px solid var(--ink-black);
+            border-top: 4px solid var(--ink-black);
+        }
+
+        .narrative-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        .dialogue {
+            font-weight: 700;
+            color: var(--steamy-red);
+            background-color: rgba(200, 29, 17, 0.05);
+            padding: 0 4px;
+            border-radius: 4px;
+        }
+
+        .twist-box {
+            border: 4px double var(--ink-black);
+            background-color: #fff;
+            padding: 2rem;
+            position: relative;
+        }
+        
+        .twist-reveal {
+            font-family: 'Courier New', Courier, monospace;
+            color: #2d5d7b;
+            font-weight: bold;
+        }
+
+        .section-break {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 3rem 0;
+            opacity: 0.5;
+        }
+        .section-break::before, .section-break::after {
+            content: "";
+            flex: 1;
+            border-bottom: 2px dashed var(--ink-black);
+            margin: 0 1rem;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <!-- HEADER / NAV -->
+    <header class="w-full max-w-4xl mx-auto p-4 md:p-8">
+        <div class="flex justify-between items-center mb-4">
+            <a href="index.html" class="flex items-center gap-2 text-sm font-bold uppercase hover:text-[#c81d11] transition-colors">
+                <i data-lucide="arrow-left" size="16"></i> Back to Collection
+            </a>
+        </div>
+
+        <div class="masthead bg-white border-x-0 md:border-x-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] p-6 relative overflow-hidden text-center">
+            <div class="absolute top-2 left-2 text-4xl opacity-10 rotate-45">✦</div>
+            <div class="absolute bottom-2 right-2 text-4xl opacity-10 rotate-12">✦</div>
+            
+            <h1 class="text-5xl md:text-7xl leading-none uppercase relative z-10">
+                Sa Huli, <br><span class="text-[#c81d11]">Ang Normal</span>
+            </h1>
+            <p class="mt-2 marker-font text-xl transform -rotate-2 text-gray-600">
+                ( In The End, Normalcy )
+            </p>
+        </div>
+    </header>
+
+    <!-- MAIN READER CONTENT -->
+    <main class="flex-grow w-full max-w-3xl mx-auto px-4 pb-16">
+        
+        <!-- CHARACTERS -->
+        <div class="bg-white p-6 md:p-8 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,0.5)] mb-12 mt-12">
+            <h3 class="comic-font text-2xl mb-4 border-b-2 border-dashed border-gray-300 pb-2">The Characters</h3>
+            <p class="narrative-text">
+                <strong class="uppercase text-[#8b4513]">Dante:</strong> Wealthy, tailored, and hopelessly addicted to a love he cannot keep.
+            </p>
+            <p class="narrative-text mb-0">
+                <strong class="uppercase text-[#c81d11]">Nico:</strong> Rough around the edges, shirtless, and carrying the weight of a secret transaction.
+            </p>
+        </div>
+
+        <!-- SCENE 1 -->
+        <section class="mb-16">
+            <div class="flex items-center gap-4 mb-4">
+                <span class="bg-black text-white text-xl font-bold px-3 py-1 comic-font transform -rotate-3">Scene 01</span>
+                <h2 class="text-3xl uppercase text-[#8b4513]">The Safehouse</h2>
+            </div>
+            
+            <div class="prose font-serif text-lg leading-relaxed">
+                <p class="italic text-sm text-gray-600 mb-6">
+                    The room smells of stale cigarettes and cheap lavender air freshener. It is a contrast to the pristine, tailored suit Dante just carelessly threw onto the dirty carpet.
+                </p>
+                <p class="narrative-text">
+                    Dante stands by the window, watching the heavy Manila rain blur the city lights. Behind him, the sound of a zipper breaking the silence makes his shoulders tense up.
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-black">
+                    <span class="dialogue">"Haharap ka ba o tatayo ka na lang diyan?"</span> Nico’s voice is rough, dripping with a mix of exhaustion and hunger.
+                </p>
+                <p class="narrative-text">
+                    Dante turns around. Nico is sitting on the edge of the bed, shirtless, his tattoos flexing as he leans back on his elbows. He looks like trouble—the kind Dante’s family warned him about, the kind Dante has been addicted to for five years.
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-black">
+                    <span class="dialogue">"Wala tayong oras para mag-inarte, Dante,"</span> Nico adds, his eyes dark and heavy. <span class="dialogue">"Last na 'to. Make it count."</span>
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-[#c81d11]">
+                    <span class="dialogue">"Don’t tell me what to do. Alam ko ang ginagawa ko,"</span> Dante strides forward, grabbing Nico by the jaw.
+                </p>
+            </div>
+        </section>
+
+        <div class="section-break text-2xl">✦</div>
+
+        <!-- SCENE 2 -->
+        <section class="mb-16">
+            <div class="flex items-center gap-4 mb-4 justify-end">
+                <h2 class="text-3xl uppercase text-[#c81d11]">Consumption</h2>
+                <span class="bg-[#c81d11] text-white text-xl font-bold px-3 py-1 comic-font transform rotate-2">Scene 02</span>
+            </div>
+
+            <div class="prose font-serif text-lg leading-relaxed">
+                <p class="narrative-text">
+                    The kiss is violent. It isn’t sweet; it tastes like rust and desperation. Dante pushes Nico onto the mattress, the springs creaking loudly in the small room.
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-black">
+                    <span class="dialogue">"F***... Ang bango mo. Amoy mayaman ka na naman,"</span> Nico curses against Dante’s mouth, his hands tangling into Dante’s expensive hair.
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-[#c81d11]">
+                    <span class="dialogue">"Shut up,"</span> Dante growls, biting down on Nico’s lower lip until he tastes copper.
+                </p>
+                <p class="narrative-text">
+                    He moves his hand down, his touch possessive, claiming territory he knows he’s about to lose. Nico arches his back, letting out a fractured moan.
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-black">
+                    <span class="dialogue">"D*** it, Dante... dahan-dahan naman, g*go."</span>
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-[#c81d11]">
+                    <span class="dialogue">"Sabi mo, make it count?"</span> Dante whispers hoarsely into Nico’s ear. He pins Nico’s wrists above his head. <span class="dialogue">"Ipararamdam ko sa'yo kung ano ang sinasayang mo."</span>
+                </p>
+                <p class="narrative-text">
+                    The friction is intense, a chaotic rhythm of skin slapping against skin. There is no romance here, only the raw, animalistic need to memorize a body.
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-black">
+                    <span class="dialogue">"Ah! F***... s***... Diyan... h'wag kang titigil... p*tangina..."</span> Nico gasps, his nails digging into Dante’s shoulders.
+                </p>
+                <p class="narrative-text">
+                    Dante moves with a punishing pace, sweat dripping from his forehead onto Nico’s chest. Every thrust is an accusation. Why are you doing this? Why are we ending?
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-[#c81d11]">
+                    <span class="dialogue">"Say my name."</span>
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-black">
+                    <span class="dialogue">"Dante... ah! Dante... Sa'yo ako... f***... sa'yo lang ako ngayon."</span>
+                </p>
+                <p class="narrative-text">
+                    For a few minutes, the world outside—the obligations, the lies—doesn't exist. There is only the heat, the wet sounds of their bodies colliding, and the vulgar, honest prayers they scream into the empty air.
+                </p>
+            </div>
+        </section>
+
+        <div class="section-break text-2xl">✦</div>
+
+        <!-- SCENE 3 -->
+        <section class="mb-16">
+            <div class="flex items-center gap-4 mb-4">
+                <span class="bg-black text-white text-xl font-bold px-3 py-1 comic-font transform -rotate-1">Scene 03</span>
+                <h2 class="text-3xl uppercase text-[#8b4513]">The Cold Air</h2>
+            </div>
+
+            <div class="prose font-serif text-lg leading-relaxed">
+                <p class="narrative-text">
+                    The silence after is deafening. Dante is buttoning his shirt, his fingers trembling slightly. Nico is smoking by the window, blowing smoke into the rain. They are back to being strangers sharing a room.
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-[#c81d11]">
+                    <span class="dialogue">"Inayos ko na ang cheque,"</span> Dante says, his voice devoid of emotion. He places an envelope on the bedside table. <span class="dialogue">"Sapat na 'yan para sa puhunan na kailangan mo sa probinsya."</span>
+                </p>
+                <p class="narrative-text">
+                    Nico doesn’t look at the envelope. He just nods. <span class="dialogue">"Salamat."</span>
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-[#c81d11]">
+                    <span class="dialogue">"Masaya ka na?"</span> Dante sneers, fixing his tie in the mirror. <span class="dialogue">"Makakatakas ka na sa magulong buhay dito sa Maynila. You get your fresh start."</span>
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-black">
+                    <span class="dialogue">"Hindi ito tungkol sa saya, Dante. Alam mo 'yan,"</span> Nico flicks the cigarette ash.
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-[#c81d11]">
+                    <span class="dialogue">"Oo nga pala. It's about doing the 'right thing.' Being a good son. A good man."</span>
+                </p>
+                <p class="narrative-text">
+                    Nico turns to him, his eyes sad but firm.
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-black">
+                    <span class="dialogue">"Pagod na ako, Dante. Pagod na akong magtago. Pagod na akong maging sikreto mo. Gusto ko ng buhay na... tahimik. Yung hindi ko kailangang lumingon sa likod bawat hawak ko sa kamay ng kasama ko."</span>
+                </p>
+                <p class="narrative-text">
+                    Dante stops. That hurts more than the breakup.
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-[#c81d11]">
+                    <span class="dialogue">"Aalis na ako. Good luck sa 'normal' na buhay mo."</span>
+                </p>
+            </div>
+        </section>
+
+        <div class="section-break text-2xl">✦</div>
+
+        <!-- SCENE 4 -->
+        <section class="mb-16">
+            <div class="flex items-center gap-4 mb-4 justify-end">
+                <h2 class="text-3xl uppercase text-[#2d5d7b]">The Reality</h2>
+                <span class="bg-[#2d5d7b] text-white text-xl font-bold px-3 py-1 comic-font transform rotate-3">Scene 04</span>
+            </div>
+
+            <div class="prose font-serif text-lg leading-relaxed">
+                <p class="narrative-text">
+                    Nico watches the door close. He waits for the sound of Dante’s car to fade away before he moves. He walks over to the table, but he doesn't pick up the envelope with the money. Instead, he picks up his phone which has been buzzing incessantly.
+                </p>
+                <p class="narrative-text">
+                    He swipes to answer.
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-black">
+                    <span class="dialogue">"Hello, Ma?"</span> Nico answers, his voice shifting to a gentle, respectful tone.
+                </p>
+                <p class="narrative-text font-mono text-gray-500 bg-gray-100 p-2 border-l-4 border-gray-400">
+                    "Nak, nasaan ka na? Andito na yung fiancé ng kapatid mo. Hinihintay ka na namin para sa final fitting ng barong."
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-black">
+                    <span class="dialogue">"Pauwi na ako, Ma. Traffic lang,"</span> Nico sighs, rubbing his temples.
+                </p>
+                <p class="narrative-text font-mono text-gray-500 bg-gray-100 p-2 border-l-4 border-gray-400">
+                    "Bilisan mo. Alam mo naman, malaking utang na loob natin ito kay Dante. Kung hindi dahil sa kanya, hindi ma-ooperahan ang Papa mo. At hindi rin makaka-ahon ang kapatid mo. Napakabait na tao, 'no? Swerte ng ate mo sa kanya."
+                </p>
+                <p class="narrative-text">
+                    Nico freezes. He looks at the unmade bed where the scent of Dante still lingers.
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-black">
+                    <span class="dialogue">"Opo, Ma,"</span> Nico whispers, his voice trembling. <span class="dialogue">"Swerte ni Ate... kay Dante."</span>
+                </p>
+            </div>
+        </section>
+
+        <!-- EPILOGUE / TWIST -->
+        <div class="section-break"></div>
+        
+        <section class="mb-16">
+            <div class="text-center mb-8">
+                <h2 class="text-4xl comic-font uppercase text-[#c81d11]">The Truth</h2>
+                <div class="w-24 h-1 bg-black mx-auto mt-2"></div>
+            </div>
+
+            <div class="twist-box shadow-[8px_8px_0px_0px_var(--ink-black)]">
+                <p class="narrative-text">
+                    Nico isn't leaving for the province to start a business. <strong class="text-[#c81d11]">Nico is the future brother-in-law.</strong>
+                </p>
+                <p class="narrative-text">
+                    The "harsh truth" isn't that Dante is marrying someone else. It's that Nico brokered the marriage. Nico introduced his own sister to Dante months ago. Nico manipulated the situation because his family needed the medical financial support that only a connection to Dante’s family could provide.
+                </p>
+                <div class="bg-gray-100 p-4 border-l-4 border-[#c81d11] italic mb-4">
+                    Nico sacrificed his relationship, pushing the love of his life to marry his own sister, trading their romance for his family's survival.
+                </div>
+                <p class="narrative-text">
+                    The "normal life" Nico wanted wasn't for himself—it was stability for his parents and sister, paid for by selling Dante into a loveless marriage.
+                </p>
+                <p class="narrative-text">
+                    Nico picks up the envelope Dante left. It’s not "capital" for a business. It’s the payment for the wedding catering Nico organized. He keeps the money, turns off the lights, and walks out into the rain to attend his ex-lover's wedding rehearsal dinner.
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-black text-[#f0eadd] py-8 border-t-4 border-[#c81d11] mt-auto">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h2 class="text-3xl comic-font mb-4 text-[#c81d11]">THE END</h2>
+            <div class="flex justify-center gap-4 mb-6">
+                 <button onclick="window.location.href='index.html'" class="border border-[#f0eadd] px-4 py-2 hover:bg-[#c81d11] hover:border-[#c81d11] hover:text-white transition-all uppercase font-bold text-xs">
+                    Return to Collection
+                 </button>
+            </div>
+            <p class="mt-8 text-xs font-mono opacity-50">© 2025 The Sunday Strip. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

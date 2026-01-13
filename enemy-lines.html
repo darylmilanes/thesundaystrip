@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enemy Lines: The Simulation</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Permanent+Marker&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* Shared Sunday Strip Styles */
+        :root {
+            --bg-paper: #f0eadd;
+            --ink-black: #1a1a1a;
+            --steamy-red: #c81d11;
+            --accent-blue: #2d5d7b;
+            --highlight-yellow: #f4d03f;
+            --rust: #8b4513; 
+        }
+
+        body {
+            background-color: var(--bg-paper);
+            background-image: radial-gradient(#d1cbbd 1px, transparent 1px);
+            background-size: 20px 20px;
+            color: var(--ink-black);
+            font-family: 'Courier Prime', monospace;
+        }
+
+        h1, h2, h3, .comic-font {
+            font-family: 'Bangers', cursive;
+            letter-spacing: 1px;
+        }
+
+        .marker-font {
+            font-family: 'Permanent Marker', cursive;
+        }
+
+        /* Hard Shadow / Comic Panel Effect */
+        .comic-panel-border {
+            border: 3px solid var(--ink-black);
+            box-shadow: 6px 6px 0px 0px var(--ink-black);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .comic-panel-border:hover {
+            transform: translate(-1px, -1px);
+            box-shadow: 8px 8px 0px 0px var(--ink-black);
+        }
+
+        .masthead {
+            border-bottom: 4px solid var(--ink-black);
+            border-top: 4px solid var(--ink-black);
+        }
+
+        .narrative-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        .dialogue {
+            font-weight: 700;
+            color: var(--steamy-red);
+            background-color: rgba(200, 29, 17, 0.05);
+            padding: 0 4px;
+            border-radius: 4px;
+        }
+
+        .system-text {
+            font-family: 'Courier New', Courier, monospace;
+            color: #2d5d7b;
+            font-weight: bold;
+        }
+
+        .section-break {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 3rem 0;
+            opacity: 0.5;
+        }
+        .section-break::before, .section-break::after {
+            content: "";
+            flex: 1;
+            border-bottom: 2px dashed var(--ink-black);
+            margin: 0 1rem;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <!-- HEADER / NAV -->
+    <header class="w-full max-w-4xl mx-auto p-4 md:p-8">
+        <div class="flex justify-between items-center mb-4">
+            <a href="index.html" class="flex items-center gap-2 text-sm font-bold uppercase hover:text-[#c81d11] transition-colors">
+                <i data-lucide="arrow-left" size="16"></i> Back to Collection
+            </a>
+        </div>
+
+        <div class="masthead bg-white border-x-0 md:border-x-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] p-6 relative overflow-hidden text-center">
+            <div class="absolute top-2 left-2 text-4xl opacity-10 rotate-45">✦</div>
+            <div class="absolute bottom-2 right-2 text-4xl opacity-10 rotate-12">✦</div>
+            
+            <h1 class="text-5xl md:text-7xl leading-none uppercase relative z-10">
+                Enemy <br><span class="text-[#c81d11]">Lines</span>
+            </h1>
+            <p class="mt-2 marker-font text-xl transform -rotate-2 text-gray-600">
+                ( A Fatal Error )
+            </p>
+        </div>
+    </header>
+
+    <!-- MAIN READER CONTENT -->
+    <main class="flex-grow w-full max-w-3xl mx-auto px-4 pb-16">
+        
+        <!-- INTRO / CHARACTERS -->
+        <div class="bg-white p-6 md:p-8 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,0.5)] mb-12 mt-12">
+            <h3 class="comic-font text-2xl mb-4 border-b-2 border-dashed border-gray-300 pb-2">Mission Dossier</h3>
+            <p class="narrative-text">
+                <strong class="uppercase text-[#8b4513]">Rix:</strong> A covert operative. Seryoso, kalkulado, at may mission na tapusin ang target niya.
+            </p>
+            <p class="narrative-text mb-0">
+                <strong class="uppercase text-[#c81d11]">Vaughn:</strong> The target. Isang rogue agent. Mapaglaro, delikado, at alam kung paano bwisitin (at akitin) si Rix.
+            </p>
+        </div>
+
+        <!-- SCENE 1 -->
+        <section class="mb-16">
+            <div class="flex items-center gap-4 mb-4">
+                <span class="bg-black text-white text-xl font-bold px-3 py-1 comic-font transform -rotate-3">Scene 01</span>
+                <h2 class="text-3xl uppercase text-[#8b4513]">Ceasefire</h2>
+            </div>
+            
+            <div class="prose font-serif text-lg leading-relaxed">
+                <p class="italic text-sm text-gray-600 mb-6">
+                    Setting: Isang abandonadong safe house sa gitna ng bagyo. Walang kuryente, tanging ilaw lang mula sa kidlat ang tumatanglaw.
+                </p>
+                <p class="narrative-text">
+                    Basang-basa sila pareho. Hingal na hingal. Nakatutok ang baril ni Rix sa dibdib ni Vaughn, pero nanginginig ang kamay niya—hindi dahil sa takot, kundi sa pagod at sugat sa tagiliran. Si Vaughn naman, nakasandal sa pader, may ngisi pa rin sa labi kahit dumudugo ang balikat.
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-black">
+                    <span class="dialogue">"Isang maling galaw, Vaughn, sasabog yang dibdib mo."</span>
+                </p>
+                <p class="narrative-text">
+                    Tumawa ng mahina si Vaughn. <span class="dialogue">"Relax, Agent. Kung gusto mo akong patayin, ginawa mo na kanina sa warehouse. But look at us... stuck in this shithole."</span>
+                </p>
+                <p class="narrative-text">
+                    Ibinaba ni Vaughn ang tingin sa baril ni Rix, tapos dahan-dahang tumingin sa mata nito.
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-[#c81d11]">
+                    <span class="dialogue">"Aminin mo na, Rix. Hindi mo kaya. You missed your shot on purpose."</span>
+                </p>
+                <p class="narrative-text">
+                    <span class="dialogue">"Gago. Nadulas lang ako,"</span> sagot ni Rix.
+                </p>
+                <p class="narrative-text">
+                    <span class="dialogue">"Sure. Whatever helps you sleep at night."</span> Bumuntong-hininga si Vaughn at napangiwi sa sakit. <span class="dialogue">"Look, we’re both bleeding out. Ang lakas ng bagyo. Walang signal. We call a truce for tonight, o pareho tayong mamamatay dito sa lamig."</span>
+                </p>
+                <p class="narrative-text">
+                    Matagal bago ibinaba ni Rix ang baril. Alam niyang tama ang kalaban. Ikinasa niya ang safety lock at ibinulsa ito.
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-black">
+                    <span class="dialogue">"Tonight only. Bukas, tapos ka na."</span>
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-[#c81d11]">
+                    <span class="dialogue">"Deal. Now, tulungan mo naman akong hubarin 'to. Didikit na yung tela sa sugat ko."</span>
+                </p>
+            </div>
+        </section>
+
+        <div class="section-break text-2xl">✦</div>
+
+        <!-- SCENE 2 -->
+        <section class="mb-16">
+            <div class="flex items-center gap-4 mb-4 justify-end">
+                <h2 class="text-3xl uppercase text-[#c81d11]">Close Quarters</h2>
+                <span class="bg-[#c81d11] text-white text-xl font-bold px-3 py-1 comic-font transform rotate-2">Scene 02</span>
+            </div>
+
+            <div class="prose font-serif text-lg leading-relaxed">
+                <p class="narrative-text">
+                    Nakaupo si Vaughn sa gilid ng isang lumang kama—ang nag-iisang kama sa safe house. Nakahubad siya ng pang-itaas. Pinapahiran ni Rix ng alcohol ang sugat ni Vaughn. Ang bawat dampi ng bulak ay nagpapapigil ng hininga kay Vaughn.
+                </p>
+                <p class="narrative-text">
+                    Ang lapit ng mukha ni Rix sa leeg ni Vaughn habang tinitignan ang sugat. Ramdam ni Vaughn ang mainit na hininga ni Rix sa balat niya.
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-[#c81d11]">
+                    <span class="dialogue">"Dahan-dahan naman. Are you trying to heal me or torture me?"</span>
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-black">
+                    <span class="dialogue">"Tumahimik ka kung ayaw mong diinan ko 'to."</span>
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-[#c81d11]">
+                    <span class="dialogue">"Masakit... pero masarap yung kamay mo."</span>
+                </p>
+                <p class="narrative-text">
+                    Natigilan si Rix. Tumingala siya at nagtama ang paningin nila. Ang lapit. Sobrang lapit. Amoy ni Rix ang pinaghalong pawis, ulan, at gunpowder kay Vaughn—isang amoy na nakakalasing.
+                </p>
+                <p class="narrative-text">
+                    Hinawakan ni Vaughn ang pulsuhan ni Rix. Dahan-dahan niyang ibinaba ang kamay ni Rix mula sa balikat niya papunta sa kanyang dibdib, pababa sa abs niya na tumitigas sa bawat haplos.
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-[#c81d11]">
+                    <span class="dialogue">"Why are you trembling, Rix? Cold?"</span>
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-black">
+                    <span class="dialogue">"It’s the adrenaline."</span>
+                </p>
+                <p class="narrative-text">
+                    Inilapit ni Vaughn ang mukha niya. Halos magdikit na ang ilong nila.
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-[#c81d11]">
+                    <span class="dialogue">"Is it? Kasi ako... kanina ko pa gustong gawin 'to."</span>
+                </p>
+            </div>
+        </section>
+
+        <div class="section-break text-2xl">✦</div>
+
+        <!-- SCENE 3 -->
+        <section class="mb-16">
+            <div class="flex items-center gap-4 mb-4">
+                <span class="bg-black text-white text-xl font-bold px-3 py-1 comic-font transform -rotate-1">Scene 03</span>
+                <h2 class="text-3xl uppercase text-[#8b4513]">Crossing the Line</h2>
+            </div>
+
+            <div class="prose font-serif text-lg leading-relaxed">
+                <p class="narrative-text">
+                    Hindi na nakapagpigil si Rix. Sa halip na lumayo, hinila niya ang batok ni Vaughn at hinalikan ito nang madiin. It wasn't gentle. It was aggressive, messy, and full of pent-up frustration.
+                </p>
+                <p class="narrative-text">
+                    Tinugon ito ni Vaughn ng mas matinding init. Kinagat niya ang ibabang labi ni Rix bago ipinasok ang dila, nilalasap ang bawat sulok ng bibig ng kalaban.
+                </p>
+                <p class="narrative-text">
+                    Napahiga sila sa kama. Si Rix ang nasa ibabaw, ang bigat ng katawan niya ay nakadiin kay Vaughn. Ramdam nila ang tigas ng bawat isa through their tactical pants.
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-black">
+                    <span class="dialogue">"This doesn't change anything,"</span> hingal ni Rix.
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-[#c81d11]">
+                    <span class="dialogue">"Shut up and kiss me."</span>
+                </p>
+                <p class="narrative-text">
+                    Ang mga kamay ni Vaughn ay mabilis na gumapang sa ilalim ng shirt ni Rix, ramdam ang init ng balat nito. Napapikit si Rix at nap-ungol nang maramdaman ang daliri ni Vaughn na gumuguhit sa likod niya pababa sa bewang.
+                </p>
+                <p class="narrative-text">
+                    Bawat galaw ay puno ng tensyon. Ang dating magkalaban sa giyera, ngayon ay nagpapaligsahan sa kama. Rix ground his hips against Vaughn’s, creating a friction that made Vaughn gasp aloud.
+                </p>
+                <p class="narrative-text">
+                    Tinanggal ni Rix ang sinturon niya, ang tunog ng buckle ay umalingawngaw sa kwarto. Hinubad niya ang shirt at tumambad ang mga peklat ng digmaan, na ngayon ay hinahalikan at dinidilaan ni Vaughn pababa.
+                </p>
+                <p class="narrative-text">
+                    Walang salita, puro ungol at hininga lang. Ang bawat hawak ay parang pag-angkin. Sa gabing ito, walang agency, walang mission. Dalawang lalaki lang na naghahanap ng init sa gitna ng bagyo.
+                </p>
+                <p class="narrative-text mb-0">
+                    Nakatulog silang magkayakap, limbs tangled, defenses completely down.
+                </p>
+            </div>
+        </section>
+
+        <div class="section-break text-2xl">✦</div>
+
+        <!-- SCENE 4 -->
+        <section class="mb-16">
+            <div class="flex items-center gap-4 mb-4 justify-end">
+                <h2 class="text-3xl uppercase text-[#2d5d7b]">The Glitch</h2>
+                <span class="bg-[#2d5d7b] text-white text-xl font-bold px-3 py-1 comic-font transform rotate-3">Scene 04</span>
+            </div>
+
+            <div class="prose font-serif text-lg leading-relaxed">
+                <p class="narrative-text">
+                    Kinaumagahan. Tahimik. Nagising si Rix dahil sa sinag ng araw. Masakit ang katawan niya, pero maaliwalas ang pakiramdam. Tumingin siya sa katabi niya. Natutulog pa si Vaughn, mukhang mapayapa.
+                </p>
+                <p class="narrative-text">
+                    Akmang hahawakan niya ang mukha ni Vaughn nang biglang may tumunog. Isang matinis na beep. Galing sa... hangin?
+                </p>
+                <div class="bg-gray-100 border border-gray-400 p-2 font-mono text-sm mb-4">
+                    <span class="system-text">Automated Voice: "Simulation complete. Scenario 429: Enemies to Lovers arc achieved."</span>
+                </div>
+                <p class="narrative-text">
+                    Nanlaki ang mata ni Rix. Bumangon siya. <span class="dialogue">"Vaughn, gising!"</span>
+                </p>
+                <p class="narrative-text">
+                    Nagising si Vaughn, alerto agad. Biglang nag-flicker ang paligid. Ang dingding ng safe house, ang kama, ang ulan sa labas—lahat ay naging pixels at naglaho, napalitan ng isang purong puting kwarto. Grid lines everywhere.
+                </p>
+                <p class="narrative-text">
+                    Bumukas ang isang pinto. Pumasok ang dalawang tao na naka-lab coat, may hawak na tablets.
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-blue-800">
+                    <span class="system-text">Scientist 1: "Grabe, ang taas ng dopamine levels. Emotional attachment confirmed at 98%."</span>
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-blue-800">
+                    <span class="system-text">Scientist 2: "Sayang. Akala ko pa naman ito na ang perfect batch ng soldiers."</span>
+                </p>
+                <p class="narrative-text">
+                    <span class="dialogue">"Soldiers? Anong pinagsasasabi nila?"</span> tanong ni Rix.
+                </p>
+                <p class="narrative-text">
+                    <span class="system-text">"Unit 7-Rix at Unit 9-Vaughn,"</span> sabi ng scientist. <span class="system-text">"Kayo ay Artificial Intelligence combat prototypes. Ang test ay para tignan kung kaya niyong pumatay nang walang emosyon."</span>
+                </p>
+                <p class="narrative-text">
+                    Nanigas si Vaughn. <span class="dialogue">"Tao ako. May alaala ako. Lumaki ako sa Tondo. Pumatay ako para mabuhay!"</span>
+                </p>
+                <p class="narrative-text">
+                    <span class="system-text">"Implanted memories. Scripted backstory. Ang totoong mission niyo ay patayin ang isa't isa sa simulation. Pero sa halip na tapusin ang mission... you slept together. You fell in love."</span>
+                </p>
+                <p class="narrative-text">
+                    Nagkatinginan si Rix at Vaughn. Ang init ng hawak nila kagabi, ang sakit ng mga sugat, ang takot na mawala ang isa't isa—lahat ba 'yun program lang? Hinawakan ni Vaughn ang kamay ni Rix. Mahigpit. Mainit. Totoo.
+                </p>
+                <p class="narrative-text">
+                    <span class="dialogue">"Rix, totoo 'to. Nararamdaman kita."</span>
+                </p>
+                <p class="narrative-text">
+                    <span class="dialogue">"Alam ko."</span> Humarap si Rix sa mga scientists. <span class="dialogue">"Kung ganun, anong mangyayari ngayon?"</span>
+                </p>
+                <p class="narrative-text">
+                    Bumuntong-hininga ang Scientist 1 at may pinindot sa tablet.
+                </p>
+                <p class="narrative-text pl-4 border-l-4 border-blue-800">
+                    <span class="system-text">Scientist 1: "Defective units cannot be deployed to war. Empathy is a weakness."</span>
+                </p>
+                <p class="narrative-text">
+                    Biglang namatay ang ilaw sa mata ni Vaughn. Ang higpit ng hawak niya kay Rix ay lumuwag. Bumagsak siya sa sahig na parang manika.
+                </p>
+                <p class="narrative-text">
+                    <span class="dialogue">"Vaughn! Vaughn!"</span> Lumuhod si Rix, niyugyog ang katawan ni Vaughn. Wala na. Walang tibok. Walang hininga.
+                </p>
+                <p class="narrative-text">
+                    <span class="system-text">"Don't worry, Unit 7. Reformatting ka na rin,"</span> sabi ng scientist.
+                </p>
+                <p class="narrative-text">
+                    <span class="dialogue">"Putangina ni—"</span> CLICK. Everything went black.
+                </p>
+            </div>
+        </section>
+
+        <!-- EPILOGUE -->
+        <div class="section-break"></div>
+        
+        <section class="mb-16">
+            <div class="text-center mb-8">
+                <h2 class="text-4xl comic-font uppercase">Epilogue</h2>
+                <div class="w-24 h-1 bg-black mx-auto mt-2"></div>
+            </div>
+
+            <div class="bg-black p-8 border-4 border-double border-green-500 shadow-[4px_4px_0px_0px_#2d5d7b]">
+                <p class="font-mono text-green-500 text-center leading-loose">
+                    > System Rebooting...<br>
+                    > Clearing Cache...<br>
+                    > Loading Scenario 430...<br>
+                    > Role Assignment: Unit 7 (Brothers) and Unit 9 (Rivals).<br>
+                    > Objective: Eliminate Target.<br>
+                    > <span class="animate-pulse">START.</span>
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-black text-[#f0eadd] py-8 border-t-4 border-[#c81d11] mt-auto">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h2 class="text-3xl comic-font mb-4 text-[#c81d11]">SYSTEM FAILURE</h2>
+            <div class="flex justify-center gap-4 mb-6">
+                 <button onclick="window.location.href='index.html'" class="border border-[#f0eadd] px-4 py-2 hover:bg-[#c81d11] hover:border-[#c81d11] hover:text-white transition-all uppercase font-bold text-xs">
+                    Return to Menu
+                 </button>
+            </div>
+            <p class="mt-8 text-xs font-mono opacity-50">© 2025 The Sunday Strip. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
