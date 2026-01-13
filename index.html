@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Sunday Strip</title>
+    <title>The Sunday Strip | Restricted</title>
+    <link rel="icon" type="image/png" href="man.png">
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -11,349 +12,588 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Permanent+Marker&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Permanent+Marker&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Monoton&display=swap" rel="stylesheet">
     
-    <!-- Lucide Icons --> 
+    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
-        /* Custom Styles for the Comic Aesthetic */
+        /* --- VISUAL IDENTITY --- */
         :root {
-            --bg-paper: #f0eadd;
-            --ink-black: #1a1a1a;
-            --steamy-red: #c81d11;
-            --accent-blue: #2d5d7b;
-            --highlight-yellow: #f4d03f;
+            --paper: #fdfbf7;
+            --ink: #111111;
+            --red: #e63946;
+            --blue: #457b9d;
+            --accent: #f1faee;
         }
 
         body {
-            background-color: var(--bg-paper);
-            background-image: radial-gradient(#d1cbbd 1px, transparent 1px);
-            background-size: 20px 20px;
-            color: var(--ink-black);
-            font-family: 'Courier Prime', 'Courier New', Courier, monospace;
+            background-color: var(--paper);
+            color: var(--ink);
+            font-family: 'Space Mono', monospace; /* More modern/digital typewriter feel */
+            overflow-x: hidden;
         }
 
-        h1, h2, h3, .comic-font {
-            font-family: 'Bangers', 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', sans-serif;
-            letter-spacing: 1px;
-        }
-
-        .marker-font {
-            font-family: 'Permanent Marker', 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', sans-serif;
-        }
-
-        /* Comic Panel Styling */
-        .comic-panel {
-            background-color: white;
-            border: 3px solid var(--ink-black);
-            box-shadow: 6px 6px 0px 0px var(--ink-black);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .comic-panel:hover {
-            transform: translate(-2px, -2px);
-            box-shadow: 10px 10px 0px 0px var(--ink-black);
-        }
-
-        /* Comic Speech Bubble */
-        .speech-bubble {
-            position: relative;
-            background: #fff;
-            border: 2px solid var(--ink-black);
-            border-radius: .4em;
-        }
-        .speech-bubble:after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border: 10px solid transparent;
-            border-top-color: var(--ink-black);
-            border-bottom: 0;
-            border-left: 0;
-            margin-left: -10px;
-            margin-bottom: -10px;
-        }
-
-        /* Masthead Styling */
-        .masthead {
-            border-bottom: 4px solid var(--ink-black);
-            border-top: 4px solid var(--ink-black);
-        }
-
-        /* Scrollbar styling for modal */
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-        ::-webkit-scrollbar-track {
-            background: var(--bg-paper); 
-        }
-        ::-webkit-scrollbar-thumb {
-            background: var(--ink-black); 
-            border: 1px solid var(--bg-paper);
-        }
-
-        /* Diagonal stripes for "Censored/Steamy" effect */
-        .censored-bg {
-            background: repeating-linear-gradient(
-                45deg,
-                rgba(200, 29, 17, 0.1),
-                rgba(200, 29, 17, 0.1) 10px,
-                rgba(200, 29, 17, 0.05) 10px,
-                rgba(200, 29, 17, 0.05) 20px
-            );
+        /* --- TYPOGRAPHY --- */
+        .title-font {
+            font-family: 'Bangers', cursive;
+            letter-spacing: 2px;
         }
         
-        .modal-open {
-            overflow: hidden;
+        .hand-font {
+            font-family: 'Permanent Marker', cursive;
+        }
+
+        .neon-font {
+            font-family: 'Monoton', cursive; /* Retro neon style font */
+        }
+
+        /* --- GAME UI (LOCK SCREEN) --- */
+        .pixel-corners {
+            clip-path: polygon(
+                0px 10px, 10px 10px, 10px 0px, 
+                calc(100% - 10px) 0px, calc(100% - 10px) 10px, 100% 10px, 
+                100% calc(100% - 10px), calc(100% - 10px) calc(100% - 10px), calc(100% - 10px) 100%, 
+                10px 100%, 10px calc(100% - 10px), 0px calc(100% - 10px)
+            );
+        }
+
+        .dialogue-box {
+            background-color: #2a2a2a;
+            color: #fff;
+            border: 4px solid #fff;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        }
+
+        .typing-cursor::after {
+            content: '▋';
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* --- NEON SIGN STYLES & ANIMATIONS --- */
+        
+        .neon-sign {
+            color: #fff;
+            text-shadow:
+                0 0 5px #fff,
+                0 0 10px #fff,
+                0 0 20px #e63946,
+                0 0 40px #e63946,
+                0 0 80px #e63946,
+                0 0 90px #e63946,
+                0 0 100px #e63946,
+                0 0 150px #e63946;
+            animation: neon-flicker 3s infinite alternate;
+        }
+
+        .neon-border {
+            box-shadow:
+                0 0 5px #fff,
+                inset 0 0 5px #fff,
+                0 0 10px #e63946,
+                inset 0 0 10px #e63946,
+                0 0 20px #e63946,
+                inset 0 0 20px #e63946;
+            animation: border-flicker 4s infinite alternate;
+        }
+
+        @keyframes neon-flicker {
+            0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+                opacity: 1;
+                text-shadow:
+                    0 0 5px #fff,
+                    0 0 10px #fff,
+                    0 0 20px #e63946,
+                    0 0 40px #e63946,
+                    0 0 80px #e63946,
+                    0 0 90px #e63946,
+                    0 0 100px #e63946;
+            }
+            20%, 24%, 55% {
+                opacity: 0.5;
+                text-shadow: none;
+            }
+        }
+
+        @keyframes border-flicker {
+            0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+                opacity: 1;
+                box-shadow:
+                    0 0 5px #fff,
+                    inset 0 0 5px #fff,
+                    0 0 10px #e63946,
+                    inset 0 0 10px #e63946,
+                    0 0 20px #e63946;
+            }
+            20%, 24%, 55% {
+                opacity: 0.4;
+                box-shadow: none;
+            }
+        }
+
+        /* Wrong Code - Red Flashing State */
+        .neon-error {
+            color: #ff0000 !important;
+            text-shadow:
+                0 0 10px #ff0000,
+                0 0 20px #ff0000,
+                0 0 40px #ff0000,
+                0 0 80px #ff0000 !important;
+            animation: error-flash 0.1s infinite !important;
+        }
+
+        .border-error {
+            border-color: #ff0000 !important;
+            box-shadow:
+                0 0 10px #ff0000,
+                inset 0 0 10px #ff0000,
+                0 0 20px #ff0000 !important;
+            animation: error-flash 0.1s infinite !important;
+        }
+
+        @keyframes error-flash {
+            0% { opacity: 1; }
+            50% { opacity: 0.3; }
+            100% { opacity: 1; }
+        }
+
+        /* Fade Out Transition */
+        .fade-out-slow {
+            opacity: 0 !important;
+            transition: opacity 2.5s ease-out;
+        }
+
+        .fade-in-slow {
+            animation: fadeIn 2.5s ease-in forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* --- MAIN CONTENT STYLES --- */
+        .story-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 3px solid var(--ink);
+            background: white;
+        }
+
+        .story-card:hover {
+            transform: translateY(-5px) translateX(5px);
+            box-shadow: -5px 5px 0 0 var(--ink);
+        }
+
+        .tag-badge {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            padding: 0.25rem 0.5rem;
+            border: 1px solid var(--ink);
+            background-color: #fff;
+            margin-right: 0.25rem;
+            margin-bottom: 0.25rem;
+            display: inline-block;
+        }
+
+        /* Hide scrollbar for modal but keep functionality */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col">
+<body class="min-h-screen relative bg-black">
 
-    <!-- MASTHEAD HEADER -->
-    <header class="w-full max-w-6xl mx-auto p-4 md:p-8">
-        <div class="masthead flex flex-col items-center justify-center py-6 bg-white border-x-0 md:border-x-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] relative overflow-hidden">
-            
-            <!-- Top Metadata Strip (Retained as requested) -->
-            <div class="w-full flex justify-between px-4 mb-2 text-xs md:text-sm font-bold uppercase tracking-widest border-b-2 border-black pb-2">
-                <span>Vol. 69</span>
-                <span>Late Night Edition</span>
-                <span>Price: Your Soul</span>
-            </div>
-
-            <!-- Main Title -->
-            <h1 class="text-6xl md:text-8xl text-center leading-none uppercase relative z-10 px-4">
-                The Sunday <span class="text-[#c81d11]">Strip</span>
-            </h1>
-
-            <!-- Subtitle/Slogan -->
-            <p class="mt-2 marker-font text-lg md:text-xl transform -rotate-1 text-gray-600">
-                "Where the ink never dries and the lights stay low."
-            </p>
-
-            <!-- Decorative corner elements -->
-            <div class="absolute top-2 left-2 text-4xl opacity-10 rotate-45">✦</div>
-            <div class="absolute bottom-2 right-2 text-4xl opacity-10 rotate-12">✦</div>
-        </div>
-    </header>
-
-    <!-- MAIN GRID CONTENT -->
-    <main class="flex-grow w-full max-w-6xl mx-auto px-4 pb-16">
-        <div id="story-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Stories will be injected here by JS -->
-        </div>
-    </main>
-
-    <!-- FOOTER -->
-    <footer class="bg-black text-[#f0eadd] py-8 border-t-4 border-[#c81d11] mt-auto">
-        <div class="max-w-6xl mx-auto px-4 text-center">
-            <h2 class="text-3xl comic-font mb-4">See You Next Sunday</h2>
-            <p class="text-sm opacity-70 max-w-md mx-auto">
-                All stories are fictional. Any resemblance to real persons, living or dead, is purely coincidental and probably hotter in print.
-            </p>
-            <div class="mt-6 flex justify-center space-x-4">
-                <a href="#" class="hover:text-[#c81d11] transition-colors"><i data-lucide="twitter"></i></a>
-                <a href="#" class="hover:text-[#c81d11] transition-colors"><i data-lucide="instagram"></i></a>
-                <a href="#" class="hover:text-[#c81d11] transition-colors"><i data-lucide="mail"></i></a>
-            </div>
-            <p class="mt-8 text-xs font-mono">© 2025 The Sunday Strip. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <!-- READING MODAL -->
-    <div id="read-modal" class="fixed inset-0 z-50 hidden">
-        <!-- Backdrop -->
-        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeModal()"></div>
+    <!-- ========================================== -->
+    <!--          LOCK SCREEN (GAME UI)             -->
+    <!-- ========================================== -->
+    <div id="lock-screen" class="fixed inset-0 z-50 bg-black flex flex-col items-center justify-end md:justify-center overflow-hidden transition-colors duration-1000">
         
-        <!-- Modal Content -->
-        <div class="absolute inset-0 md:inset-10 bg-[#f0eadd] md:rounded-lg shadow-2xl overflow-hidden flex flex-col md:max-w-4xl md:mx-auto border-4 border-white md:border-black animate-in fade-in zoom-in duration-200">
+        <!-- NEON SIGN (Fixed Top Center) -->
+        <div id="neon-wrapper" class="absolute top-10 md:top-16 left-1/2 -translate-x-1/2 z-40 transition-opacity duration-1000">
+            <div id="neon-border" class="border-4 border-white px-8 py-2 md:px-12 md:py-4 rounded-xl neon-border bg-black/50 backdrop-blur-sm">
+                <h1 id="neon-text" class="text-5xl md:text-7xl neon-font tracking-widest neon-sign select-none">
+                    STOP
+                </h1>
+            </div>
+            <!-- Wires holding the sign -->
+            <div class="absolute -top-16 md:-top-20 left-4 w-0.5 h-16 md:h-20 bg-gray-800"></div>
+            <div class="absolute -top-16 md:-top-20 right-4 w-0.5 h-16 md:h-20 bg-gray-800"></div>
+        </div>
+
+        <!-- Darkness Overlay (Ambient) -->
+        <div id="darkness-overlay" class="absolute inset-0 bg-black/70 z-0 pointer-events-none transition-opacity duration-1000"></div>
+
+        <!-- Background Pattern -->
+        <div id="bg-pattern" class="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/diagmonds-light.png')] z-[-1]"></div>
+
+        <!-- The Character & Dialogue Container -->
+        <div class="relative z-10 w-full max-w-4xl mx-auto h-full flex flex-col justify-end md:justify-center items-center pb-0 md:pb-4 transition-opacity duration-500" id="lock-content">
             
-            <!-- Modal Header -->
-            <div class="bg-black text-white p-4 flex justify-between items-center border-b-4 border-[#c81d11]">
-                <div>
-                    <h2 id="modal-title" class="text-2xl md:text-3xl comic-font tracking-wider">Title Here</h2>
-                    <p id="modal-meta" class="text-xs font-mono text-gray-300">Author • Date</p>
-                </div>
-                <button onclick="closeModal()" class="hover:text-[#c81d11] transition-colors">
-                    <i data-lucide="x" size="32"></i>
-                </button>
+            <!-- Character Image Container -->
+            <!-- Positioned lower to avoid overlap with sign -->
+            <div class="w-80 md:w-80 lg:w-96 transition-all duration-500 hover:scale-105 relative z-10 -mb-16 md:-mb-24 pointer-events-none mt-40 md:mt-20">
+                <img src="man.png" alt="Gatekeeper" class="w-full h-auto drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]">
             </div>
 
-            <!-- Modal Body (Scrollable) -->
-            <div class="flex-grow overflow-y-auto p-6 md:p-12 text-lg leading-relaxed">
-                <div class="max-w-2xl mx-auto">
-                    <!-- Dynamic Content -->
-                    <div id="modal-content">
-                        <!-- Story text goes here -->
+            <!-- Dialogue Box Wrapper -->
+            <div class="w-11/12 md:w-3/4 lg:w-2/3 relative z-20 mb-8 md:mb-0 overflow-visible">
+                <div class="pixel-corners dialogue-box p-6 md:p-8 relative mt-12 md:mt-20">
+                    
+                    <!-- Speaker Name -->
+                    <div class="inline-block bg-white text-black px-4 py-1 border-2 border-black font-bold uppercase tracking-wider text-sm transform -rotate-1 mb-4 shadow-sm">
+                        The Gatekeeper
                     </div>
-                </div>
-            </div>
 
-            <!-- Modal Footer -->
-            <div class="p-4 bg-white border-t-2 border-black flex justify-between items-center">
-                <span class="text-xs font-bold uppercase tracking-widest text-gray-500">End of Excerpt</span>
-                <button class="bg-[#c81d11] text-white px-6 py-2 font-bold uppercase comic-font text-xl border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-y-1 hover:shadow-none transition-all">
-                    Read Full Story
-                </button>
+                    <!-- Dialogue Text -->
+                    <div class="mb-6 font-mono text-sm md:text-lg leading-relaxed h-28 md:h-24 overflow-hidden relative z-20">
+                        <span id="typewriter-text"></span><span class="typing-cursor"></span>
+                    </div>
+
+                    <!-- Input Area -->
+                    <div class="flex flex-col md:flex-row gap-3 relative z-20">
+                        <input type="password" id="access-code" placeholder="ENTER ACCESS CODE..." 
+                            class="flex-grow bg-black border-2 border-gray-600 text-white px-4 py-3 font-mono outline-none focus:border-white focus:bg-gray-900 transition-colors uppercase placeholder-gray-500">
+                        
+                        <button onclick="checkCode()" class="bg-white text-black px-8 py-3 font-bold border-2 border-gray-400 hover:bg-red-600 hover:text-white hover:border-white transition-colors uppercase tracking-widest">
+                            Unlock
+                        </button>
+                    </div>
+
+                    <!-- Hint -->
+                    <p class="mt-4 text-[10px] md:text-xs text-gray-400 text-center md:text-left relative z-20">
+                        * Don't have the code? Email hello@darylmilanes.com
+                    </p>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- JAVASCRIPT LOGIC -->
+    <!-- ========================================== -->
+    <!--            MAIN CONTENT (APP)              -->
+    <!-- ========================================== -->
+    <div id="app-content" class="min-h-screen flex flex-col hidden bg-[#fdfbf7]">
+        
+        <!-- HEADER -->
+        <nav class="sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b-4 border-black">
+            <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+                <div class="flex items-center gap-2">
+                    <div class="w-3 h-3 bg-red-600 rounded-full animate-pulse"></div>
+                    <span class="text-xs font-bold tracking-widest uppercase">Restricted Archive</span>
+                </div>
+                <div class="flex items-center gap-4">
+                    <div class="text-xs font-mono hidden md:block">
+                        ID: <span class="bg-black text-white px-2 py-1">AUTHORIZED</span>
+                    </div>
+                    <button onclick="logout()" class="text-xs font-bold uppercase border-2 border-black px-3 py-1 hover:bg-black hover:text-white transition-colors flex items-center gap-1">
+                        <i data-lucide="log-out" size="12"></i> Exit
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- HERO SECTION -->
+        <header class="w-full max-w-7xl mx-auto px-4 pt-12 pb-8 md:pt-20 md:pb-16 text-center">
+            <div class="inline-block border-2 border-black px-4 py-1 text-sm font-bold uppercase tracking-[0.2em] mb-4 bg-[#f4d03f] transform -rotate-1">
+                Late Night Edition
+            </div>
+            <h1 class="text-5xl md:text-8xl title-font uppercase leading-[0.9] mb-6">
+                The Sunday <br>
+                <span class="text-[#e63946] relative inline-block">
+                    Strip
+                    <svg class="absolute w-full h-3 -bottom-1 left-0 text-black opacity-20" viewBox="0 0 100 10" preserveAspectRatio="none">
+                        <path d="M0 5 Q 50 10 100 5" stroke="currentColor" stroke-width="3" fill="none" />
+                    </svg>
+                </span>
+            </h1>
+            <p class="max-w-md mx-auto text-sm md:text-base opacity-70 font-mono leading-relaxed">
+                "Where the ink never dries and the lights stay low."<br>
+                <span class="text-[10px] uppercase text-gray-400 mt-2 block">Private Collection</span>
+            </p>
+        </header>
+
+        <!-- STORIES GRID -->
+        <main class="flex-grow w-full max-w-7xl mx-auto px-4 pb-20">
+            <!-- Grid Container -->
+            <div id="story-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                <!-- JS will inject content here -->
+            </div>
+        </main>
+
+        <!-- FOOTER -->
+        <footer class="border-t-4 border-black bg-white mt-auto py-12">
+            <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="text-center md:text-left">
+                    <h2 class="title-font text-2xl">See You Next Sunday</h2>
+                    <p class="text-xs text-gray-500 mt-1 max-w-xs">All characters appearing in this work are fictitious. Any resemblance to real persons is purely coincidental.</p>
+                </div>
+                <div class="flex gap-6">
+                    <a href="#" class="hover:text-[#e63946] transition-colors"><i data-lucide="twitter"></i></a>
+                    <a href="#" class="hover:text-[#e63946] transition-colors"><i data-lucide="instagram"></i></a>
+                    <a href="#" class="hover:text-[#e63946] transition-colors"><i data-lucide="mail"></i></a>
+                </div>
+            </div>
+            <div class="text-center mt-8 text-[10px] font-mono uppercase tracking-widest opacity-40">
+                © 2025 The Sunday Strip. All rights reserved.
+            </div>
+        </footer>
+    </div>
+
+    <!-- LOGIC -->
     <script>
-        // Initialize Icons
         lucide.createIcons();
 
-        // MOCK DATA: The Stories
+        // --- DATA ---
         const stories = [
             {
                 id: 1,
                 title: "The God of Broken Things",
                 author: "Kael & Elian",
-                date: "Jan 04",
                 tags: ["Fantasy", "Angst", "Steamy"],
                 spicyLevel: 3,
                 summary: "He hated broken things. Then he found a fallen angel in the scrap heap. A sensual cut.",
                 link: "the-god-of-broken-things.html",
-                excerpt: "N/A - Opens External File"
+                excerpt: "The scrap heap was where dreams went to die, but that night, Kael found something breathing. The angel's wing was bent, the feathers matted with oil, but the eyes... the eyes burned with a defiant fire that mirrored the forge itself."
             },
             {
                 id: 2,
                 title: "The God of Broken Things II",
                 author: "Kael & Elian",
-                date: "Jan 11",
                 tags: ["Fantasy", "Angst", "Steamy"],
                 spicyLevel: 4,
                 summary: "Part II: The Entropy of Desire. Elian returned, but the furnace is hotter now. Reality is starting to crack.",
                 link: "tgbot2.html",
-                excerpt: "N/A - Opens External File"
+                excerpt: "The air in the forge had changed. It wasn't just heat anymore; it was pressure. Elian sat on the workbench, watching Kael with a gaze that felt heavy, a gaze that promised destruction as much as salvation."
             },
             {
                 id: 3,
                 title: "Enemy Lines",
                 author: "Rix & Vaughn",
-                date: "Jan 18",
                 tags: ["Enemies to Lovers", "Angst", "Steamy", "Sci-Fi"],
                 spicyLevel: 5,
                 summary: "We were supposed to kill each other. Instead, we found ourselves in a safe house with only one bed.",
                 link: "enemy-lines.html",
-                excerpt: "N/A - Opens External File"
+                excerpt: "The storm raged outside, mirroring the chaos inside the small safehouse. Rix lowered his gun, his chest heaving. Vaughn just smirked, blood trickling from his lip. 'You missed,' he whispered. 'You never miss.'"
             },
             {
                 id: 4,
                 title: "Assets and Liabilities",
                 author: "Jace & Vance",
-                date: "Jan 25",
                 tags: ["Office Romance", "Power Play", "Plot Twist"],
                 spicyLevel: 5,
                 summary: "I merged my company with his to save it. I didn't realize he was buying me too.",
                 link: "assets-and-liabilities.html",
-                excerpt: "N/A - Opens External File"
+                excerpt: "The boardroom was empty, save for the two of them. Vance slid the contract across the mahogany table. 'Read the fine print, Jace,' he murmured, his voice smooth as silk. 'You're not just signing over the assets. You're signing over the liabilities. And darling... you are the biggest liability here.'"
             },
             {
                 id: 5,
                 title: "Ang Huling Script",
                 author: "Gio & Lucas",
-                date: "Feb 01",
                 tags: ["Drama", "Plot Twist", "Romance"],
                 spicyLevel: 4,
                 summary: "I'm a paid actor for his roleplay fantasies. But why does his apartment feel so familiar?",
                 link: "ang-huling-script.html",
-                excerpt: "N/A - Opens External File"
+                excerpt: "Lucas adjusted his tie in the mirror. Another night, another character. But when Gio opened the door, the look in his eyes wasn't lust. It was recognition. A terrifying, heartbreaking recognition that Lucas couldn't place."
             },
             {
                 id: 6,
                 title: "Ang Huling Ritwal",
                 author: "Caleb & Juno",
-                date: "Feb 08",
                 tags: ["Psychological", "BL", "Obsession"],
                 spicyLevel: 5,
                 summary: "He kept me inside to protect me. But who is protecting me from him? A story of obsession and fractured reality.",
                 link: "ang-huling-ritwal.html",
-                excerpt: "N/A - Opens External File"
+                excerpt: "The windows were painted black. 'To keep the sun out,' Juno had said. But Caleb knew it was to keep him in. He traced the bruises on his wrist, faint maps of a love that felt more like a cage."
             },
             {
                 id: 7,
                 title: "Sa Huli, Ang Normal",
                 author: "Nico & Dante",
-                date: "Feb 15",
                 tags: ["Betrayal", "Drama", "Steamy"],
                 spicyLevel: 5,
                 summary: "A passionate goodbye in a cheap hotel. One final encounter before he leaves for a 'normal' life. But who defines normal?",
                 link: "sa-huli-ang-normal.html",
-                excerpt: "N/A - Opens External File"
+                excerpt: "The neon sign outside buzzed incessantly. Inside, the sheets were tangled, a testament to the last hour. Nico sat on the edge of the bed, smoking. 'This is it then?' Dante asked, buttoning his shirt. 'Back to reality?' Nico didn't answer. Reality was a check Dante had written, and Nico had already cashed it."
             }
         ];
 
-        // RENDER STORIES
-        const grid = document.getElementById('story-grid');
+        // --- ACCESS CONTROL ---
+        const lockScreen = document.getElementById('lock-screen');
+        const lockContent = document.getElementById('lock-content');
+        const appContent = document.getElementById('app-content');
+        const typewriterElement = document.getElementById('typewriter-text');
+        const accessInput = document.getElementById('access-code');
+        const neonText = document.getElementById('neon-text');
+        const neonBorder = document.getElementById('neon-border');
+        const neonWrapper = document.getElementById('neon-wrapper');
+        
+        const dialogueText = "Halt! This area is restricted. To enter, you need the secret code. If you don't have it, email the admin to get access.";
+        let charIndex = 0;
 
-        function renderStories(filterTag = 'all') {
+        // Typewriter Effect Function
+        function typeWriter() {
+            if (charIndex < dialogueText.length) {
+                typewriterElement.innerHTML += dialogueText.charAt(charIndex);
+                charIndex++;
+                setTimeout(typeWriter, 30); // Speed of typing
+            }
+        }
+
+        function checkAccess() {
+            const isUnlocked = localStorage.getItem('sunday_strip_access') === 'true';
+            
+            if (isUnlocked) {
+                // If already unlocked in previous session, skip animations
+                lockScreen.style.display = 'none';
+                appContent.classList.remove('hidden');
+                // Simulate "Lights On" immediately
+                appContent.style.opacity = '1';
+            } else {
+                // First time / Locked: Start Typewriter effect
+                setTimeout(typeWriter, 500);
+            }
+        }
+
+        function checkCode() {
+            const code = accessInput.value.trim();
+            if (code === 'iam18') {
+                localStorage.setItem('sunday_strip_access', 'true');
+                
+                // Success Animation Text
+                typewriterElement.innerHTML = "<span class='text-green-400'>ACCESS GRANTED. FADING OUT...</span>";
+                
+                // 1. Turn off the sign slowly (Dimming Effect) & Fade UI
+                setTimeout(() => {
+                    // Turn off neon animations
+                    neonText.classList.remove('neon-sign');
+                    neonBorder.classList.remove('neon-border');
+                    
+                    // Fade out everything synchronized
+                    neonWrapper.classList.add('fade-out-slow');
+                    lockContent.classList.add('fade-out-slow');
+                    
+                    // Ensure background is fully black for the transition
+                    lockScreen.style.backgroundColor = '#000';
+                    
+                }, 500);
+
+                // 2. Reveal Content (Slowly bring brightness back)
+                setTimeout(() => {
+                    lockScreen.style.display = 'none';
+                    appContent.classList.remove('hidden');
+                    
+                    // Trigger reflow to ensure transition happens
+                    void appContent.offsetWidth;
+                    
+                    // Fade in app content
+                    appContent.classList.add('fade-in-slow');
+                }, 3000); // Wait for fade out time
+
+            } else {
+                // Failure Animation
+                // 1. Trigger Red Flash
+                neonText.classList.remove('neon-sign');
+                neonBorder.classList.remove('neon-border');
+                
+                // Force reflow
+                void neonText.offsetWidth;
+                
+                neonText.classList.add('neon-error');
+                neonBorder.classList.add('border-error');
+                
+                // 2. Input Feedback
+                accessInput.classList.add('border-red-500', 'animate-pulse');
+                typewriterElement.innerHTML = "<span class='text-red-500'>ACCESS DENIED. TRY AGAIN.</span>";
+                
+                // 3. Revert after 1 second
+                setTimeout(() => {
+                    neonText.classList.remove('neon-error');
+                    neonBorder.classList.remove('border-error');
+                    
+                    neonText.classList.add('neon-sign');
+                    neonBorder.classList.add('neon-border');
+                    
+                    accessInput.classList.remove('border-red-500', 'animate-pulse');
+                    typewriterElement.innerHTML = ""; 
+                    charIndex = 0;
+                    typeWriter(); // Re-type original message
+                }, 1000);
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('sunday_strip_access');
+            location.reload();
+        }
+
+        // Allow 'Enter' key to submit
+        accessInput.addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                checkCode();
+            }
+        });
+
+        // --- APP LOGIC ---
+
+        function renderStories() {
+            const grid = document.getElementById('story-grid');
             grid.innerHTML = '';
             
-            const filtered = filterTag === 'all' 
-                ? stories 
-                : stories.filter(s => s.tags.includes(filterTag));
-
-            filtered.forEach(story => {
-                // Create Spicy Pepper String
+            stories.forEach(story => {
                 const peppers = '🌶️'.repeat(story.spicyLevel);
-                
-                // Create Tags HTML
                 const tagsHtml = story.tags.map(tag => 
-                    `<span class="inline-block bg-yellow-200 border border-black px-2 py-1 text-xs font-bold uppercase mr-1 mb-1 transform -rotate-2">${tag}</span>`
+                    `<span class="tag-badge text-gray-600">${tag}</span>`
                 ).join('');
 
                 const card = document.createElement('article');
-                card.className = 'comic-panel flex flex-col h-full relative group cursor-pointer';
+                card.className = 'story-card flex flex-col h-full relative group cursor-pointer overflow-hidden';
                 
-                // --- CLICK HANDLER ---
+                // Click Handler - New Tab
                 if (story.link) {
-                    // Direct Navigation for external files
-                    card.onclick = () => window.location.href = story.link;
-                } else {
-                    // Modal for standard internal stories
-                    card.onclick = () => openModal(story);
+                    card.onclick = () => window.open(story.link, '_blank');
                 }
                 
                 card.innerHTML = `
-                    <!-- Header Area (Replacing Image) -->
-                    <div class="h-24 w-full border-b-3 border-black relative overflow-hidden bg-gray-200 flex items-center justify-center">
-                        <div class="text-6xl opacity-10 font-black tracking-tighter select-none">
-                            ${story.date}
-                        </div>
+                    <!-- Top Strip (Title Replaces Date) -->
+                    <div class="h-28 bg-gray-100 border-b-2 border-black flex flex-col justify-center px-6 relative overflow-hidden">
+                        <div class="absolute inset-0 opacity-5 bg-[url('https://www.transparenttextures.com/patterns/notebook.png')]"></div>
                         
-                        <!-- Date Badge -->
-                        <div class="absolute top-2 left-2 bg-white border-2 border-black px-2 py-1 font-bold text-xs shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] z-10">
-                            ${story.date}
-                        </div>
-
+                        <!-- Title (Now in Header) -->
+                        <h3 class="text-xl md:text-2xl title-font leading-tight z-10 group-hover:text-[#e63946] transition-colors relative">${story.title}</h3>
+                        
                         <!-- Spicy Level -->
-                        <div class="absolute bottom-2 right-2 bg-black text-white px-2 py-1 font-bold text-xs border border-white z-10">
-                            ${peppers}
+                        <div class="absolute top-2 right-2 z-10">
+                            <span class="text-[10px] font-mono text-gray-500 tracking-widest">${peppers}</span>
                         </div>
                     </div>
 
-                    <!-- Content Area -->
-                    <div class="p-5 flex-grow flex flex-col relative censored-bg">
-                        <h3 class="text-2xl mb-2 uppercase leading-none group-hover:text-[#c81d11] transition-colors">${story.title}</h3>
+                    <!-- Body -->
+                    <div class="p-6 flex-grow flex flex-col relative z-10 bg-white">
                         
-                        <div class="mb-4">
+                        <!-- Meta Info (Author Only) -->
+                        <div class="flex justify-between items-center text-xs font-mono text-gray-400 mb-4 border-b border-dashed border-gray-200 pb-2">
+                            <span class="uppercase">By ${story.author}</span>
+                        </div>
+
+                        <div class="mb-4 flex flex-wrap">
                             ${tagsHtml}
                         </div>
 
-                        <!-- Summary formatted as speech bubble -->
-                        <div class="speech-bubble p-3 text-sm italic mb-4 flex-grow relative z-10">
+                        <p class="text-sm font-mono text-gray-600 leading-relaxed mb-6 border-l-2 border-gray-200 pl-3">
                             "${story.summary}"
-                        </div>
+                        </p>
 
-                        <div class="mt-auto flex justify-between items-center border-t-2 border-black pt-3 border-dashed">
-                            <span class="text-xs font-bold uppercase text-gray-500">By ${story.author}</span>
-                            <span class="text-xs font-bold uppercase text-[#c81d11] group-hover:underline">Read Issue &rarr;</span>
+                        <div class="mt-auto pt-4 flex justify-end items-center text-xs font-bold uppercase tracking-wider">
+                            <span class="text-[#e63946] group-hover:translate-x-1 transition-transform">Read Issue &rarr;</span>
                         </div>
                     </div>
                 `;
@@ -361,45 +601,8 @@
             });
         }
 
-        // MODAL LOGIC
-        const modal = document.getElementById('read-modal');
-        const modalTitle = document.getElementById('modal-title');
-        const modalMeta = document.getElementById('modal-meta');
-        const modalContent = document.getElementById('modal-content');
-
-        function openModal(story) {
-            modalTitle.innerText = story.title;
-            modalMeta.innerText = `Authored by ${story.author} • Released ${story.date}`;
-            
-            // Format content to look like manuscript
-            modalContent.innerHTML = `
-                <p class="mb-6 font-bold text-xl italic border-l-4 border-[#c81d11] pl-4">
-                    ${story.summary}
-                </p>
-                <div class="font-serif space-y-4">
-                    <p>${story.excerpt}</p>
-                    <p>...</p>
-                    <p class="opacity-50 text-sm">[Content Hidden for Preview]</p>
-                </div>
-            `;
-            
-            modal.classList.remove('hidden');
-            document.body.classList.add('modal-open');
-        }
-
-        function closeModal() {
-            modal.classList.add('hidden');
-            document.body.classList.remove('modal-open');
-        }
-
-        // Close modal on Escape key
-        document.addEventListener('keydown', function(event) {
-            if (event.key === "Escape") {
-                closeModal();
-            }
-        });
-
-        // Initial Render
+        // Initialize
+        checkAccess();
         renderStories();
 
     </script>
